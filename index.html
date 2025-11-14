@@ -1,0 +1,1379 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta  charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Das Statikbüro 24 bietet professionelle Ingenieurleistungen im Bereich Statik und Bauwesen. Mit langjähriger Erfahrung in Planung, Berechnung und Überwachung von Bauprojekten sorgt das Unternehmen für sichere und wirtschaftliche Baukonstruktionen.">
+<title>Statikbüro24 - Statik. Gutachten. Tragwerksplanung.</title> 
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="statikbüro-favicon.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fallback: Inter als ähnliche moderne Schriftart -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" media="screen">
+<link href="css/enhanced-styles.css" rel="stylesheet" media="screen">
+<link href="css/des-inspiration.css" rel="stylesheet" media="screen">
+<link href="css/liquid-glass.css" rel="stylesheet" media="screen">
+<link href="css/neuemachina-font.css" rel="stylesheet" media="screen">
+<link href="css/futuristic-design.css" rel="stylesheet" media="screen">
+<link href="css/performance-animations.css" rel="stylesheet" media="screen">
+<script>
+// Verhindere direktes Springen zu Hash beim Laden der Seite
+// Dies muss sehr früh ausgeführt werden, bevor der Browser springt
+(function() {
+  if (window.location.hash && window.location.hash !== '#top' && window.location.hash !== '') {
+    // Speichere Hash
+    var hash = window.location.hash;
+    // Entferne Hash komplett aus URL, damit Browser nicht springt
+    if (history.replaceState) {
+      history.replaceState(null, null, window.location.pathname + window.location.search);
+    } else {
+      window.location.hash = '';
+    }
+    // Setze Scroll-Position auf oben - mehrfach versuchen
+    function scrollToTop() {
+      window.scrollTo(0, 0);
+      if (document.documentElement) {
+        document.documentElement.scrollTop = 0;
+      }
+      if (document.body) {
+        document.body.scrollTop = 0;
+      }
+    }
+    scrollToTop();
+    // Wiederhole mehrmals, um sicherzugehen
+    setTimeout(scrollToTop, 0);
+    setTimeout(scrollToTop, 10);
+    setTimeout(scrollToTop, 50);
+    setTimeout(scrollToTop, 100);
+    
+    // Speichere Hash für späteres Scrollen
+    window._pendingHash = hash;
+  }
+})();
+</script>
+</head>
+<body class="home-page">
+  
+    <!-- Loader -->
+
+    <div class="loader">
+      <div class="page-lines">
+        <div class="container">
+          <div class="col-line col-xs-4">
+            <div class="line"></div>
+          </div>
+          <div class="col-line col-xs-4">
+            <div class="line"></div>
+          </div>
+          <div class="col-line col-xs-4">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="loader-brand"> 
+        <div class="sk-folding-cube">
+          <div class="sk-cube1 sk-cube"></div>
+          <div class="sk-cube2 sk-cube"></div>
+          <div class="sk-cube4 sk-cube"></div>
+          <div class="sk-cube3 sk-cube"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header id="top" class="header-home">
+        <div class="brand-panel">
+          <a href="#top" class="brand js-target-scroll">
+            <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+          </a>
+          <div class="brand-name">Statikbüro Berlin</div>
+          <div class="slide-number">
+            <span class="current-number text-primary">0<span class="count">1</span></span>
+            <sup><span class="delimiter">/</span> 0<span class="total-count"></span></sup>
+          </div>
+        </div>
+        <div class="header-phone">+49 (0) 3362 | 740 41 83</div>
+        <div class="vertical-panel"></div>
+        <div class="vertical-panel-content">
+          <div class="vertical-panel-info">
+              <div class="vertical-panel-title">Statikbüro Berlin</div>
+              <div class="line"></div>
+           </div>
+          <ul class="social-list">
+            <li><a href="" class="fa fa-instagram"></a></li>
+            <li><a href="" class="fa fa-twitter"></a></li>
+            <li><a href="" class="fa fa-behance"></a></li>
+            <li><a href="" class="fa fa-facebook"></a></li>
+           </ul>  
+        </div> 
+
+
+        <!-- Navigation Desctop - DES.de Style -->
+
+        <!-- Hamburger Menu Toggle -->
+        <button class="hamburger-menu-toggle" id="hamburger-toggle" aria-label="Menü öffnen/schließen">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="navbar-desctop-des" id="desktop-nav-menu">
+          <!-- Logo oben rechts -->
+          <div class="nav-logo-top-right">
+            <a href="#top" class="brand-des js-target-scroll">
+              <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+            </a>
+          </div>
+          
+          <!-- Zentrales vertikales Menü -->
+          <div class="nav-menu-center">
+            <ul class="nav-menu-vertical">
+              <li class="nav-item-large">
+                <a href="index.html">3D Erlebniswelt</a>
+              </li>
+              <li class="nav-item">
+                <a href="#about" class="js-target-scroll">Über uns</a>
+              </li>
+              <li class="nav-item">
+                <a href="projekte.html">Projekte</a>
+              </li>
+              <li class="nav-item has-submenu">
+                <a href="projects.html">Leistungsportfolio</a>
+                <ul class="nav-submenu">
+                  <li><a href="projects.html#tragwerksplanung">Tragwerksplanung</a></li>
+                  <li><a href="projects.html#standsicherheitsnachweis">Standsicherheitsnachweis</a></li>
+                  <li><a href="projects.html#bauantrag">Bauantrag</a></li>
+                  <li><a href="projects.html#bewehrungsplan">Bewehrungsplan</a></li>
+                  <li><a href="projects.html#brandschutznachweis">Brandschutznachweis</a></li>
+                  <li><a href="projects.html#schallschutznachweis">Schallschutznachweis</a></li>
+                  <li><a href="projects.html#wärmeschutznachweis">Wärmeschutznachweis</a></li>
+                  <li><a href="projects.html#energieausweis">Energieausweis</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="contacts.html">Kontakt</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Vertikale Texte links -->
+          <div class="nav-vertical-left">
+            <div class="vertical-text">
+              <a href="datenschutz.html">Datenschutz</a>
+            </div>
+            <div class="vertical-text">
+              <a href="impressum.html">Impressum</a>
+            </div>
+            <div class="vertical-text">
+              <span>© 2025</span>
+            </div>
+          </div>
+
+          <!-- Sprache Selector unten mittig -->
+          <div class="nav-language-center">
+            <span class="lang-active">de</span> <span class="lang-separator">/</span> <span class="lang-inactive">en</span>
+          </div>
+
+          <!-- Social Media Icons unten rechts -->
+          <div class="nav-social-bottom-right">
+            <a href="" class="social-icon">in</a>
+            <a href="" class="social-icon">k</a>
+            <a href="" class="social-icon">f</a>
+          </div>
+        </nav>
+
+        <!-- Navigation Mobile -->
+
+        <nav class="navbar-mobile">
+          <a href="#top" class="brand js-target-scroll">
+            <img src="img/colored-logo.png" alt="Statikbüro24">
+          </a>
+          
+          <div class="navbar-mobile-right">
+            <a href="tel:+4933627404183" class="navbar-mobile-phone-btn">
+              <span class="phone-btn-label">
+                <i class="fa fa-phone"></i>
+              </span>
+            </a>
+            
+            <button class="hamburger-menu-toggle" id="hamburger-toggle-mobile" aria-label="Menü öffnen/schließen">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </button>
+          </div>
+        </nav> 
+      </header>
+
+  <!-- Layout -->
+
+  <div class="layout">
+    
+    <!-- Home / Hero Section -->
+    
+    <main class="main">
+      <iframe
+        class="frame"
+        src="https://drone-map-8vto.vercel.app/embed"
+        allow="fullscreen"
+        loading="lazy"
+        title="Statikbüro 3D Drohnen Tour"
+        allowfullscreen>
+      </iframe>
+      
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-down-indicator js-target-scroll">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 10L12 15L17 10" stroke="#ffb344" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </main>
+
+    <div class="content">   
+    
+      <!-- About  -->
+
+      <section id="about" style="margin-top: 4em;" class="about section">
+        <div class="container">
+          <header class="section-header">
+            <h1 style="font-size: 50px;" class="projekte-hero-title slide-in-right">Experten für Statik und Tragwerksplanung<span class="text-primary">.</span></h1>
+            <strong class="fade-title-left">Über uns</strong>
+          </header>
+          <div class="section-content">
+            <div class="row-base row">
+              <div class="col-base col-sm-6 col-md-4 slide-in-left delay-1">
+                <h2 class="col-about-title"><span class="text-primary">Warum Statikbüro24?</span></h2>
+                <div class="col-about-info">
+                  <p>Willkommen beim Statikbüro24 – Ihrem zuverlässigen Partner für professionelle Tragwerksplanung und statische Berechnungen.<br>Wir bieten maßgeschneiderte Lösungen für Bauvorhaben aller Art, von Wohn- und Gewerbebauten bis hin zu anspruchsvollen Ingenieurbauten:</p>
+                  <ul class="project-list-enhanced">
+                    <li>Neubau</li>
+                    <li>Stahlbetonbau</li>
+                    <li>Mauerwerksbau</li>
+                    <li>Bestandsbau</li>
+                    <li>Holzbau</li>
+                    <li>Wohnungsbau / Industrie / Gewerbe</li>
+                    <li>Erweiterung / Aufstockung / Sanierung</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-base col-about-spec col-sm-6 col-md-4 slide-in-up delay-2">
+                <div class="service-item">
+                  <img alt="" width="46" src="img/img-icon/icon-architecture.png" loading="lazy">
+                  <h3>Erfahrung & Kompetenz</h3>
+                  <p>Ein Team aus qualifizierten Statikern und Ingenieuren</p>
+                </div>
+                <div class="service-item">
+                  <img alt="" width="58" src="img/img-icon/icon-interiors.png" loading="lazy">
+                  <h3>Zuverlässigkeit & Präzision</h3>
+                  <p>Planung nach höchsten Standards</p>
+                </div>
+                <div class="service-item">
+                  <img alt="" width="58" src="img/img-icon/icon-planing.png" loading="lazy">
+                  <h3>Digitale Prozesse</h3>
+                  <p>Effiziente und schnelle Bearbeitung Ihrer Projekte</p>
+                </div>
+               
+              </div>
+              <div class="clearfix visible-sm"></div>
+              <div class="col-base col-about-img col-sm-6 col-md-4 slide-in-right delay-3" style="filter: brightness(50%); /* Verringert die Helligkeit auf 50% */
+    transition: filter 0.3s ease;">
+                <img alt="" class="img-responsive" src="img/bg/380x370.jpg" loading="lazy">
+            
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects section">
+        <div class="container">
+          <h2 class="section-title slide-in-left">Unseren letzten <span class="text-primary">Projekte</span></h2>
+        </div>
+        <div class="section-content">
+          <div class="projects-carousel js-projects-carousel js-projects-gallery animate-stagger">
+          <style>
+            /* Mobile Zentrierung für Projekt-Elemente */
+            @media (max-width: 991px) {
+              .projects-carousel {
+                margin: 0 auto;
+                text-align: center;
+              }
+              
+              .projects-carousel .owl-item {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+              }
+              
+              .project,
+              .project.project-light {
+                margin: 0 auto !important;
+                text-align: center !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+              }
+              
+              .project figure {
+                width: 100% !important;
+                margin: 0 auto !important;
+                text-align: center !important;
+              }
+              
+              .project figure img {
+                width: 100% !important;
+                margin: 0 auto !important;
+                display: block !important;
+              }
+              
+              .project figcaption {
+                text-align: center !important;
+                margin: 2rem 1rem !important;
+                left: 0 !important;
+                right: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+              }
+              
+              .project-title {
+                text-align: center !important;
+                left: auto !important;
+                position: relative !important;
+                width: 100%;
+                margin: 0 auto;
+              }
+              
+              .project-category {
+                position: relative !important;
+                left: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+                margin: 1rem 0 0 0 !important;
+                text-align: center !important;
+                letter-spacing: 0.2em !important;
+              }
+            }
+          </style>
+            <div class="project project-light slide-in-left">
+              <a href="img/bg/Neubau-11-Parteienhauses-Tempelhof.jpg" title="Projekt 1">
+                <figure>
+                  <img alt="" src="img/bg/Neubau-11-Parteienhauses-Tempelhof.jpg" loading="lazy">
+                  <figcaption>
+                    <h3 class="project-title">
+                      11-Parteienhauses in Berlin Tempelhof
+                    </h3>
+                    <h4 class="project-category">
+                      Architektur
+                    </h4>
+                    <div class="project-zoom"></div>
+                  </figcaption>
+                </figure>
+              </a>
+            </div>
+            <div class="project project-light slide-in-right">
+              <a href="img/bg/Projekt-DB-Gleisquerung-Veddeljpg.jpg" title="Projekt 2">
+                <figure>
+                  <img alt="" src="img/bg/Projekt-DB-Gleisquerung-Veddeljpg.jpg" loading="lazy">
+                  <figcaption>
+                    <h3 class="project-title">
+                      DB-Gleisquerung Veddel in Hamburg
+                    </h3>
+                    <h4 class="project-category">
+                      Architektur
+                    </h4>
+                    <div class="project-zoom"></div>
+                  </figcaption>
+                </figure>
+              </a>
+            </div>
+            <div class="project slide-in-left">
+              <a href="img/bg/Neubau.jpg" title="Projekt 3">
+                <figure>
+                  <img alt="" src="img/bg/Neubau.jpg" loading="lazy">
+                  <figcaption>
+                    <h3 class="project-title">
+                      Mehrfamilienhauses in Worms
+                    </h3>
+                    <h4 class="project-category">
+                      Architektur
+                    </h4>
+                    <div class="project-zoom"></div>
+                  </figcaption>
+                </figure>
+              </a>
+            </div>
+            <div class="project slide-in-right">
+              <a href="img/bg/28-Parteien-Haus-Architektur.jpg" title="Projekt 4">
+                <figure>
+                  <img alt="" src="img/bg/28-Parteien-Haus-Architektur.jpg" loading="lazy">
+                  <figcaption>
+                    <h3 class="project-title">
+                      28 Parteien Haus Bauzeit 1,5 Jahre
+                    </h3>
+                    <h4 class="project-category">
+                      Architektur
+                    </h4>
+                    <div class="project-zoom"></div>
+                  </figcaption>
+                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="container" style="text-align: center; margin-top: 60px;">
+          <a href="projekte.html" class="alle-projekte-button">
+            <span class="alle-projekte-label">Alle Projekte ansehen</span>
+          </a>
+        </div>
+        <style>
+          .alle-projekte-button {
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          
+          .alle-projekte-label {
+            position: relative;
+            font-family: 'neueMachina', 'Neue Machina', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: #ffb344 !important;
+            text-transform: uppercase;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1 !important;
+            z-index: 2;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 179, 68, 0.4);
+            display: inline-block !important;
+            visibility: visible !important;
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 179, 68, 0.3);
+            background: rgba(255, 179, 68, 0.08);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            animation: pulseGlow 2s ease-in-out infinite;
+          }
+          
+          .alle-projekte-label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 179, 68, 0.3), transparent);
+            transition: left 0.6s ease;
+          }
+          
+          .alle-projekte-button:hover .alle-projekte-label {
+            color: #fff !important;
+            transform: translateY(-3px);
+            border-color: rgba(255, 179, 68, 0.6);
+            background: rgba(255, 179, 68, 0.15);
+            box-shadow: 0 4px 20px rgba(255, 179, 68, 0.4), 0 0 30px rgba(255, 179, 68, 0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 179, 68, 0.7);
+            animation: none;
+          }
+          
+          .alle-projekte-button:hover .alle-projekte-label::before {
+            left: 100%;
+          }
+          
+          @keyframes pulseGlow {
+            0%, 100% {
+              box-shadow: 0 2px 10px rgba(255, 179, 68, 0.3), 0 0 20px rgba(255, 179, 68, 0.1);
+            }
+            50% {
+              box-shadow: 0 4px 20px rgba(255, 179, 68, 0.5), 0 0 30px rgba(255, 179, 68, 0.3);
+            }
+          }
+        </style>
+      </section>
+
+      <!-- Services -->
+
+      <section class="services-section projects section">
+  <div class="container">
+    <header class="section-header">
+      <h2 class="section-title">Unser <span class="text-primary">Leistungsportfolio</span></h2>
+      <strong class="fade-title-left">services</strong>
+    </header>
+  </div>
+
+  <div class="section-content center-content grid-3">
+    <div class="row-special row-services grid-3 animate-stagger">
+
+      <!-- ROW 1 -->
+      <div class="col-base col-service col-sm-6 col-md-4 wow fadeInUp breite slide-in-left">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-architecture.png" loading="lazy">
+          <h3>Tragwerksplanung</h3>
+          <p>Unsere Expertise in der Tragwerksplanung garantiert Ihnen innovative und sichere 
+            Ingenieurlösungen für Ihr Bauprojekt. Vertrauen Sie auf unsere zuverlässige Fachberatung 
+            für optimale Statik und Konstruktion!</p>
+          <a href="projects.html#tragwerksplanung" class="btn btn-sm">Mehr erfahren</a>
+        </div>
+      </div>
+
+      <div class="col-base col-service col-sm-6 col-md-4 wow fadeInUp slide-in-up" data-wow-delay="0.1s">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-interiors.png" loading="lazy">
+          <h3>Standsicherheitsnachweis</h3>
+          <p>Wir erstellen präzise Standsicherheitsnachweise für Ihr Bauvorhaben. 
+            Mit modernster Software und erfahrenen Ingenieuren gewährleisten wir höchste Sicherheit, zuverlässige Berechnungen und optimale Statik für Ihr Projekt.</p>
+          <a href="projects.html#standsicherheitsnachweis" class="btn btn-sm">Mehr erfahren</a>
+        </div>
+      </div>
+
+      <div class="col-base col-service col-sm-6 col-md-4 wow fadeInUp position slide-in-right" data-wow-delay="0.2s">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-planing.png" loading="lazy">
+          <h3>Bauantrag</h3>
+          <p>Erfolgreicher Bauantrag – Grundlage für sicheren Hausbau. Die Statikprüfung ist unerlässlich. 
+            Wir bieten umfassende Informationen, Unterstützung und gewährleisten eine reibungslose Genehmigung Ihres Bauvorhabens.</p>
+          <a href="projects.html#bauantrag" class="btn btn-sm ">Mehr erfahren</a>
+        </div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="col-base col-service col-sm-6 col-md-4 wow abstand fadeInUp slide-in-left" data-wow-delay="0.3s">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-planing.png" loading="lazy">
+          <h3>Schallschutznachweis</h3>
+          <p>Ein effektiver Schallschutz ist nicht nur häufig gesetzlich vorgeschrieben, sondern kann auch zukünftige Probleme bei Verkauf oder Vermietung vermeiden. 
+            Daher ist ein gut durchdachtes Schallschutzkonzept für die meisten Bauvorhaben unerlässlich.</p>
+          <a href="projects.html#schallschutznachweis" class="btn button btn-sm">Mehr erfahren</a>
+        </div>
+      </div>
+
+      <div class="col-base col-service col-sm-6 col-md-4 abstand wow fadeInUp slide-in-up" data-wow-delay="0.4s">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-architecture.png" loading="lazy">
+          <h3>Wärmeschutznachweis</h3>
+          <p>Wir bieten den erforderlichen Wärmeschutznachweis nach GEG für antragspflichtige Bauvorhaben, der nur von qualifizierten Architekten und Bauingenieuren erstellt werden darf.
+             Wir unterstützen Sie dabei, alle behördlichen Anforderungen zu erfüllen.</p>
+          <a href="projects.html#wärmeschutznachweis" class="btn button btn-sm">Mehr erfahren</a>
+        </div>
+      </div>
+
+      <div class="col-base col-service col-sm-6 col-md-4  abstand wow fadeInUp slide-in-right" data-wow-delay="0.5s">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-architecture.png" loading="lazy">
+          <h3>Bewehrungsplan</h3>
+          <p>Als professionelles Ingenieurbüro erstellen wir Bewehrungs- und Schalpläne für Ihre Bauprojekte. 
+            Unser Leistungsspektrum umfasst zudem Positionspläne, Lasten- und Lastenabtragspläne sowie Konstruktionspläne im Stahlbau.</p>
+          <a href="projects.html#bewehrungsplan" class="btn button btn-sm">Mehr erfahren</a>
+        </div>
+      </div>
+
+      <!-- ROW 3 -->
+      <div class="col-base col-service col-sm-6 col-md-4 wow fadeInUp slide-in-left" data-wow-delay="0.6s">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-interiors.png" loading="lazy">
+          <h3>Energieausweis</h3>
+          <p>Wissen Sie, ob Ihr Gebäude effizient oder energieintensiv ist? Ein Energieausweis schafft Klarheit. 
+            Wir unterstützen Sie bei der energetischen Bewertung gemäß dem Gebäudeenergiegesetz (GEG) und entwickeln individuelle Lösungen für die Ausstellung von Energieausweisen.</p>
+          <a href="projects.html#energieausweis" class="btn btn-sm">Mehr erfahren</a>
+        </div>
+      </div>
+
+      <div class="col-base col-service col-sm-6 col-md-4 wow fadeInUp slide-in-right" data-wow-delay="0.7s">
+        <div class="service-item">
+          <img alt="" src="img/img-icon/icon-interiors.png" loading="lazy">
+          <h3>Brandschutznachweis</h3>
+          <p>Wir bieten professionelle Brandschutzplanung und -beratung für maximale Sicherheit Ihrer Gebäude – von Bürokomplexen bis Eigenheimen. 
+            Vertrauen Sie auf unsere maßgeschneiderten Lösungen und unser erfahrenes Team!</p>
+          <a href="projects.html#brandschutznachweis" class="btn btn-sm">Mehr erfahren</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+  
+      <!-- Clients  -->
+
+      <section class="clients section">
+        <div class="container">
+          <header class="section-header">
+            <h2 class="section-title">Unsere <span class="text-primary">Partner</span></h2>
+            <strong class="fade-title-left">clients</strong>
+          </header>
+          <style>
+            .client a img {
+              width: 100px;
+              border-radius: 12px;
+            }
+            
+            /* Optimiertes Partner-Grid für Mobile */
+            @media (max-width: 991px) {
+              .clients-list {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 1rem !important;
+                margin: 0 !important;
+                padding: 1rem 0.5rem !important;
+                list-style: none !important;
+              }
+              
+              .clients-list .client {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                padding: 0.75rem !important;
+                margin: 0 !important;
+                background: #323232;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                min-height: 80px;
+              }
+              
+              .clients-list .client:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                background: #3a3a3a;
+              }
+              
+              .clients-list .client a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+              }
+              
+              .clients-list .client a img {
+                width: 70px !important;
+                max-width: 100% !important;
+                height: auto !important;
+                opacity: 0.5;
+                transition: all 0.3s ease;
+                border-radius: 8px;
+              }
+              
+              .clients-list .client:hover a img {
+                opacity: 1;
+                transform: scale(1.05);
+              }
+            }
+            
+            @media (max-width: 480px) {
+              .clients-list {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 0.75rem !important;
+                padding: 0.75rem 0.25rem !important;
+              }
+              
+              .clients-list .client {
+                padding: 0.5rem !important;
+                min-height: 70px;
+              }
+              
+              .clients-list .client a img {
+                width: 60px !important;
+              }
+            }
+            
+            @media (min-width: 481px) and (max-width: 768px) {
+              .clients-list {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 1rem !important;
+              }
+              
+              .clients-list .client a img {
+                width: 75px !important;
+              }
+            }
+            
+            @media (min-width: 769px) and (max-width: 991px) {
+              .clients-list {
+                grid-template-columns: repeat(5, 1fr) !important;
+                gap: 1.2rem !important;
+              }
+              
+              .clients-list .client a img {
+                width: 85px !important;
+              }
+            }
+          </style>
+          <div class="section-content">
+            <ul class="clients-list animate-stagger">
+              <li class="client slide-in-left">
+                <a href="#"><img alt="" src="img/partner-qudratisch/Arcadis_Logo_rgb.png" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-up">
+                <a href="#"><img alt="" src="img/partner-qudratisch/bonatti_logo.jpeg" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-right">
+                <a href="#"><img alt="" src="img/partner-qudratisch/favicon.png" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-left">
+                <a href="#"><img alt="" src="img/partner-qudratisch/goldbeck_logo.jpeg" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-up">
+                <a href="#"><img alt="" src="img/partner-qudratisch/image_17zj632m9lhrmrd.jpeg" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-right">
+                <a href="#"><img alt="" src="img/partner-qudratisch/kuenz_logo.jpeg" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-left">
+                <a href="#"><img alt="" src="img/partner-qudratisch/resonicgmbh_logo.jpeg" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-up">
+                <a href="#"><img alt="" src="img/partner-qudratisch/sener_logo.jpeg" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-right">
+                <a href="#"><img alt="" src="img/partner-qudratisch/technoteam_bildverarbeitung_gmbh_logo.jpeg" loading="lazy"></a>
+              </li>
+              <li class="client slide-in-left">
+                <a href="https://www.dbinfrago.com/web/bahnhoefe/bahnhofs-und-stadtentwicklung/Objektentwicklung-und-Planung-11114164"><img alt="" src="img/partner-qudratisch/unnamed.jpg" loading="lazy"></a>
+              </li>
+               <li class="client slide-in-up">
+                <a href="#"><img alt="" src="img/partner-qudratisch/unnamed.png" loading="lazy"></a>
+              </li>
+               <li class="client slide-in-right">
+                <a href="#"><img alt="" src="img/partner-qudratisch/wsp_in_germany_logo.jpeg" loading="lazy"></a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <a href="contacts.html" class="btn btn-shadow-2">Jetzt zusammen arbeiten<i class="icon-next"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="clients section">
+        <div class="container">
+          <header class="section-header">
+            <h2 class="section-title">Was unsere <span class="text-primary">Kunden</span> sagen</h2>
+            <strong class="fade-title-left">clients</strong>
+          </header>
+          <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+          <div class="section-content">
+            <script src="https://elfsightcdn.com/platform.js" ></script>
+            <div class="elfsight-app-ead9122e-f2bf-4770-8f37-ee1a083c4c4d" ></div>
+          </div>
+          <div class="button-div">
+            <a href="https://maps.app.goo.gl/rF9WZVQ9SBgsgTk18" class="btn btn-shadow-2">Bewertung abgeben<i class="icon-next"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+
+      <section class="faq section">
+        <div class="container">
+          <header class="section-header">
+            <h2 class="section-title">FAQ - <span class="text-primary">Häufig gestellte Fragen</span></h2>
+            <strong class="fade-title-left">faq</strong>
+          </header>
+          <div class="section-content">
+            <div class="row-base row">
+              <div class="col-base col-md-12">
+                <div class="faq-list animate-stagger">
+                  <div class="faq-item-enhanced slide-in-left">
+                    <button class="faq-question-enhanced">Wann benötigt man einen Statiker?</button>
+                    <div class="faq-answer-enhanced">
+                      <p>Ein Statiker wird benötigt, wenn bauliche Maßnahmen die Tragfähigkeit oder Standsicherheit eines Gebäudes beeinträchtigen könnten. Dies ist bei Neubauten, Umbauten, Aufstockungen oder größeren Sanierungen der Fall. Wir beraten Sie gerne über die Notwendigkeit einer statischen Berechnung für Ihr spezifisches Bauvorhaben.</p>
+                    </div>
+                  </div>
+                  <div class="faq-item-enhanced slide-in-right">
+                    <button class="faq-question-enhanced">Was kostet ein Statiker?</button>
+                    <div class="faq-answer-enhanced">
+                      <p>Die Kosten für einen Statiker richten sich nach der Größe und Komplexität des Bauvorhabens. Wir bieten Ihnen innerhalb von 24 Stunden nach Ihrer Kontaktaufnahme ein unverbindliches Angebot. Unsere Preise sind transparent und fair - ohne versteckte Kosten.</p>
+                    </div>
+                  </div>
+                  <div class="faq-item-enhanced slide-in-left">
+                    <button class="faq-question-enhanced">Welche Unterlagen benötigt ein Statiker?</button>
+                    <div class="faq-answer-enhanced">
+                      <p>Grundsätzlich benötigen wir Baupläne, Grundstücksdaten, Baugrundgutachten und Informationen über die geplante Nutzung. Bei einem ersten Gespräch klären wir gemeinsam, welche spezifischen Unterlagen für Ihr Projekt erforderlich sind. Wir unterstützen Sie auch bei der Beschaffung fehlender Dokumente.</p>
+                    </div>
+                  </div>
+                  <div class="faq-item-enhanced slide-in-right">
+                    <button class="faq-question-enhanced">Was macht ein Statiker genau?</button>
+                    <div class="faq-answer-enhanced">
+                      <p>Ein Statiker plant und berechnet die tragenden Teile eines Gebäudes. Er erstellt statische Berechnungen, Standsicherheitsnachweise und Bewehrungspläne, um die Sicherheit und Stabilität des Bauwerks zu gewährleisten. Zusätzlich berät er bei der Materialauswahl und Konstruktionsoptimierung.</p>
+                    </div>
+                  </div>
+                  <div class="faq-item-enhanced slide-in-left">
+                    <button class="faq-question-enhanced">Wer darf Bauanträge einreichen?</button>
+                    <div class="faq-answer-enhanced">
+                      <p>Bauanträge können von Bauherren, Architekten oder Bauingenieuren eingereicht werden. Wir unterstützen Sie bei der Zusammenstellung aller erforderlichen Unterlagen für Ihren Bauantrag und begleiten Sie durch den gesamten Genehmigungsprozess.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Contacts -->
+      <section class="contact-enhanced scroll-animate">
+        <div class="container">
+          <header class="section-header-enhanced">
+            <h2 class="section-title-enhanced slide-in-right" style="color: white;">Starten Sie <span style="color: #ffb344;">Ihr Projekt</span> mit uns</h2>
+            <p class="section-subtitle-enhanced slide-in-left delay-1" style="color: rgba(255,255,255,0.7);">Sie sind Bauträger, Bauherr, Architekt oder Projektentwickler? Dann können Sie uns jederzeit telefonisch erreichen oder bequem über unser Kontaktformular mit uns in Verbindung treten.</p>
+          </header>
+          <div class="section-content">
+            <div class="row-base row">
+              <div class="col-address col-base col-md-4 slide-in-left delay-2">
+                <h4 style="color: white;">Kontakt</h4>
+                <p><strong style="color: #ffb344;">Hauptgeschäftsstelle Berlin</strong></p>
+                <p>Franz-Ehrlich-Straße 12<br>
+                12489 Berlin</p>
+                <p>Mobil: +49 (0) 151 685 135 53<br>
+                Büro: +49 (0) 3362 740 41 83<br>
+                E-Mail: info@statikbuero-24.de</p>
+              </div>
+              <div class="col-base col-md-8 slide-in-right delay-3">
+                <div class="contact-form-enhanced">
+                  <form class="js-ajax-form">
+                    <div class="row-field row">
+                      <div class="col-field col-sm-6">
+                        <div class="form-group-enhanced">
+                          <input type="text" class="form-control-enhanced" name="name" required placeholder="Name/Ansprechpartner *">
+                        </div>
+                      </div>
+                      <div class="col-field col-sm-6">
+                        <div class="form-group-enhanced">
+                          <input type="email" class="form-control-enhanced" name="email" required placeholder="E-Mail-Adresse *">
+                        </div>
+                      </div>
+                      <div class="col-field col-sm-6">
+                        <div class="form-group-enhanced">
+                          <input type="tel" class="form-control-enhanced" name="phone" placeholder="Telefonnummer/Erreichbarkeit">
+                        </div>
+                      </div>
+                      <div class="col-field col-sm-6">
+                        <div class="form-group-enhanced">
+                          <input type="text" class="form-control-enhanced" name="company" placeholder="Unternehmen">
+                        </div>
+                      </div>
+                      <div class="col-field col-sm-12">
+                        <div class="form-group-enhanced">
+                          <textarea class="form-control-enhanced" name="message" placeholder="Ihre Nachricht" rows="5"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-message col-field col-sm-12">
+                        <div class="form-group-enhanced">
+                          <div class="success-message"><i class="fa fa-check text-primary"></i> Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet...</div>
+                          <div class="error-message">Entschuldigung, es ist ein Fehler aufgetreten</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-submit text-right">
+                      <button type="submit" class="btn-enhanced">Senden</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+
+      <footer id="footer" class="footer">     
+        <div class="container">
+          <div class="row-base row">
+            <div class="col-base text-left-md col-md-4">
+              <a href="#" class="brand">
+                <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+              </a>
+            </div>
+            <div class="text-center-md col-base col-md-4">
+              <a href="https://visionwerk.agency/" class="author-link">
+                Konzept & Design: VisionWerk.agency
+              </a>
+            </div>
+            <div class="text-right-md col-base col-md-4">
+              <div class="footer-links-wrapper">
+                <p class="footer-copyright">© 2025. All rights reserved.</p>
+                <div class="footer-links">
+                  <a href="impressum.html" class="footer-link">Impressum</a>
+                  <span class="footer-separator">|</span>
+                  <a href="datenschutz.html" class="footer-link">Datenschutz</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Lines -->
+
+      <div class="page-lines">
+        <div class="container">
+          <div class="col-line col-xs-4">
+            <div class="line"></div>
+          </div>
+          <div class="col-line col-xs-4">
+            <div class="line"></div>
+          </div>
+          <div class="col-line col-xs-4">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- SCRIPTS -->
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.magnific-popup.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/interface.js"></script>
+<script src="js/scroll-animations.js"></script> 
+
+<style>
+.grid-3 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.col-service{
+  width: 100%;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+}
+
+.row::before {
+  content: none !important;
+  display: none !important;
+}
+
+.position{
+  padding-right: -40px;
+}
+
+.row-special{
+  margin-top: -80px;
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.service-item p {
+    flex-grow: 1;
+}
+
+.service-item a {
+    margin-top: auto;
+}
+
+.abstand{
+  padding-top:20px;
+}
+
+.service-icon {
+    height: 120px;   /* gleiche Fläche für alle Icons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.service-item h4 {
+    min-height: 40px; /* Fixe Mindesthöhe für Überschriften */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Optimierungen für Service-Kästchen */
+@media (max-width: 991px) {
+  .service-item {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 1.5rem;
+    background: var(--background-card, #323232);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .service-item img {
+    max-width: 60px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+    display: block;
+  }
+  
+  .service-item h4 {
+    min-height: auto !important;
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+    line-height: 1.3;
+  }
+  
+  .service-item p {
+    flex-grow: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .service-item .btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    font-size: 0.85rem;
+  }
+  
+  .abstand {
+    padding-top: 0 !important;
+  }
+  
+  .breite,
+  .position {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  .col-service {
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  .services-section .col-service {
+    padding: 0 !important;
+  }
+  
+  .row-special {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-item {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  .service-item h4 {
+    font-size: 1.1rem;
+  }
+  
+  .service-item p {
+    font-size: 0.9rem;
+  }
+}
+
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.faq-question {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  cursor: pointer;
+  position: relative;
+  padding-right: 30px;
+}
+
+.faq-question:after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 24px;
+  color: #007bff;
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active:after {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  display: none;
+  padding-top: 10px;
+}
+
+.faq-answer p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 16px;
+  }
+}
+</style>
+
+<script>
+// Deaktiviere Browser-eigene Scroll-Restoration auf Mobile (sofort, bevor jQuery geladen ist)
+if (window.history && window.history.scrollRestoration) {
+  if (window.innerWidth <= 991) {
+    window.history.scrollRestoration = 'manual';
+  }
+}
+
+$(document).ready(function() {
+  // Deaktiviere Browser-eigene Scroll-Restoration auf Mobile (erneut prüfen)
+  if (window.history && window.history.scrollRestoration) {
+    if ($(window).width() <= 991) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }
+  
+  // Wenn die Seite mit einem Hash geladen wird (#about), scrolle sanft zur Section
+  // nachdem die Seite vollständig geladen ist
+  var pendingHash = window._pendingHash || (window.location.hash && window.location.hash !== '#top' && window.location.hash !== '' ? window.location.hash : null);
+  
+  if (pendingHash) {
+    // Stelle sicher, dass wir oben sind
+    window.scrollTo(0, 0);
+    $(window).scrollTop(0);
+    
+    // Funktion zum sanften Scrollen zur Section
+    function scrollToTarget() {
+      var scrollToElement = $(pendingHash);
+      if (scrollToElement.length) {
+        // Warte etwas länger, damit alles geladen ist und der obere Teil sichtbar ist
+        setTimeout(function() {
+          var targetTop = scrollToElement.offset().top - 100;
+          $('html, body').animate({
+            scrollTop: targetTop
+          }, 1000, 'swing', function() {
+            // Stelle Hash wieder in URL her nach dem Scrollen
+            if (history.replaceState) {
+              history.replaceState(null, null, pendingHash);
+            } else {
+              window.location.hash = pendingHash;
+            }
+          });
+        }, 500); // Verzögerung, damit oberer Teil sichtbar ist
+      }
+    }
+    
+    // Warte auf vollständiges Laden der Seite
+    if (document.readyState === 'complete') {
+      scrollToTarget();
+    } else {
+      $(window).on('load', function() {
+        scrollToTarget();
+      });
+    }
+    
+    // Cleanup
+    delete window._pendingHash;
+  }
+  
+  // Verhindere automatisches Scrollen beim Laden der Seite (nur Desktop)
+  if ($(window).width() > 991) {
+    if (window.location.hash === '' || window.location.hash === '#top') {
+      // Kein Hash vorhanden - verhindere Scrollen zum Anfang (nur Desktop)
+      $(window).scrollTop(0);
+    }
+  }
+  
+  // Verhindere automatisches Scrollen bei Links ohne Hash
+  $('a[href="#"], a[href="#top"]').on('click', function(e) {
+    if ($(window).width() <= 991) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  
+  // Hamburger Menu Toggle
+  var scrollPosition = 0;
+  
+  $('.hamburger-menu-toggle').on('click', function() {
+    if ($(window).width() <= 991) {
+      if ($(this).hasClass('active')) {
+        // Menü wird geschlossen - wiederherstellen der Scroll-Position
+        $('body').removeClass('menu-open');
+        setTimeout(function() {
+          $(window).scrollTop(scrollPosition);
+          $('body').css({ top: '', position: '' });
+        }, 10);
+      } else {
+        // Menü wird geöffnet - speichere Scroll-Position
+        scrollPosition = $(window).scrollTop();
+        $('body').css({ top: -scrollPosition + 'px', position: 'fixed' });
+        $('body').addClass('menu-open');
+      }
+    }
+    
+    $(this).toggleClass('active');
+    $('#desktop-nav-menu').toggleClass('active');
+    
+    if ($(window).width() > 991) {
+      $('body').toggleClass('menu-open');
+    }
+  });
+
+  // Dropdown-Pfeil für Submenü - Mobile und Desktop
+  $(document).on('click', '.nav-item.has-submenu > a', function(e) {
+    e.preventDefault();
+    e.stopPropagation(); // Verhindere Event-Bubbling zum Menü-Container
+    var $navItem = $(this).parent('.nav-item.has-submenu');
+    $navItem.toggleClass('active');
+    
+    // Force reflow um sicherzustellen, dass CSS angewendet wird
+    void $navItem[0].offsetHeight;
+    
+    return false;
+  });
+
+  // Untermenü öffnet sich beim Hover, Link führt direkt zur Seite
+  // Das Untermenü wird beim Hover automatisch über CSS angezeigt
+  
+  // Funktion zum Schließen des Menüs
+  function closeMenu() {
+    $('.hamburger-menu-toggle').removeClass('active');
+    $('#desktop-nav-menu').removeClass('active');
+    $('body').removeClass('menu-open');
+    
+    if ($(window).width() <= 991) {
+      $('body').css({ top: '', position: '' });
+      setTimeout(function() {
+        $(window).scrollTop(scrollPosition);
+      }, 10);
+    }
+  }
+  
+  // Menü schließen bei ALLEN Links im Menü - mit höchster Priorität
+  // Wichtig: Dies muss für Anchor-Links (#about) funktionieren, damit das Menü schließt
+  // bevor das Scrollen startet, genau wie bei Links zu anderen Seiten
+  $(document).on('click', '#desktop-nav-menu a', function(e) {
+    var $link = $(this);
+    var href = $link.attr('href');
+    var isSubmenuLink = $link.closest('.nav-submenu').length > 0;
+    var isSubmenuToggle = $link.closest('.nav-item.has-submenu > a').length > 0;
+    
+    // Wenn es ein normaler Link ist (nicht Submenü-Toggle oder Submenü-Link)
+    if (!isSubmenuLink && !isSubmenuToggle) {
+      // Für Anchor-Links auf derselben Seite: Schließe Menü UND scrollen zur Section
+      if (href && (href.indexOf('#') === 0 || href.indexOf('index.html#') !== -1)) {
+        e.preventDefault(); // Verhindere Standard-Verhalten
+        closeMenu(); // Schließe Menü zuerst
+        
+        // Extrahiere Hash aus href (kann "#about" oder "index.html#about" sein)
+        var hash = href.indexOf('#') !== -1 ? href.substring(href.indexOf('#')) : href;
+        var target = $(hash);
+        
+        if (target.length) {
+          // Warte kurz, damit Menü geschlossen ist, dann scrollen
+          setTimeout(function() {
+            var offset = ($(window).width() <= 991) ? 100 : 120;
+            $('html, body').animate({
+              scrollTop: target.offset().top - offset
+            }, 1000);
+          }, 100);
+        }
+        
+        return false;
+      } else {
+        // Für Links zu anderen Seiten: Schließe Menü SOFORT
+        closeMenu();
+      }
+    }
+  });
+  
+  // ESC Taste zum Schließen
+  $(document).on('keydown', function(e) {
+    if (e.key === 'Escape' && $('#desktop-nav-menu').hasClass('active')) {
+      $('.hamburger-menu-toggle').removeClass('active');
+      $('#desktop-nav-menu').removeClass('active');
+      $('body').removeClass('menu-open');
+    }
+  });
+
+  // Enhanced FAQ Toggle
+  $('.faq-question-enhanced').click(function() {
+    $(this).toggleClass('active');
+    $(this).next('.faq-answer-enhanced').toggleClass('active');
+  });
+  
+  // Scroll Animation
+  function checkScroll() {
+    $('.scroll-animate').each(function() {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      if (elementBottom > viewportTop && elementTop < viewportBottom) {
+        $(this).addClass('animate');
+      }
+    });
+  }
+
+  $(window).on('scroll', checkScroll);
+  checkScroll(); // Check on load
+
+  // Enhanced Service Card Animations
+  $('.service-card-enhanced').hover(
+    function() {
+      $(this).find('.service-icon-enhanced').addClass('pulse');
+    },
+    function() {
+      $(this).find('.service-icon-enhanced').removeClass('pulse');
+    }
+  );
+});
+</script>
+
+</body>
+</html>
