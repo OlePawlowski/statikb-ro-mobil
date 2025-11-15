@@ -180,7 +180,6 @@
       </nav>
 
       <!-- Navigation Mobile -->
-
       <nav class="navbar-mobile">
         <a href="index.html" class="brand">
           <img src="img/colored-logo.png" alt="Statikbüro24">
@@ -199,7 +198,7 @@
             <span class="hamburger-line"></span>
           </button>
         </div>
-      </nav> 
+      </nav>
     </header>
 
   <!-- Layout -->
@@ -1461,7 +1460,173 @@
 <script src="js/jquery.magnific-popup.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/interface.js"></script>
-<script src="js/scroll-animations.js"></script> 
+<script src="js/scroll-animations.js"></script>
+
+<!-- KRITISCH: Dieses Script muss NACH interface.js laufen -->
+<script>
+// Verhindere Bootstrap Affix für mobile Header auf projects.html
+// Dieses Script läuft NACH interface.js und überschreibt die Affix-Initialisierung
+(function() {
+  'use strict';
+  
+  function forceMobileHeaderFixed() {
+    if (typeof jQuery === 'undefined') {
+      setTimeout(forceMobileHeaderFixed, 50);
+      return;
+    }
+    
+    var $ = jQuery;
+    
+    if ($(window).width() <= 991) {
+      var navbarMobile = $('.navbar-mobile');
+      
+      if (navbarMobile.length === 0) {
+        setTimeout(forceMobileHeaderFixed, 100);
+        return;
+      }
+      
+      // 1. ZERSTÖRE Affix komplett
+      if (navbarMobile.data('bs.affix')) {
+        try {
+          navbarMobile.affix('destroy');
+        } catch(e) {}
+        navbarMobile.removeData('bs.affix');
+      }
+      
+      // 2. Entferne alle Affix-Klassen
+      navbarMobile.removeClass('affix affix-top affix-bottom animated slideInDown');
+      
+      // 3. Verschiebe aus header-home in body (KRITISCH für position: fixed)
+      var parent = navbarMobile.parent();
+      if (parent.hasClass('header-home') || parent.is('header')) {
+        navbarMobile.detach().prependTo('body');
+      } else if (!parent.is('body')) {
+        navbarMobile.appendTo('body');
+      }
+      
+      // 4. Setze NUR die kritischen Styles per Inline (Position), Rest kommt aus CSS
+      var el = navbarMobile[0];
+      if (el) {
+        // WICHTIG: Setze NUR position und top/left/right, damit CSS-Styles aus enhanced-styles.css greifen
+        // Alle anderen Styles (background, padding, etc.) kommen aus enhanced-styles.css
+        el.style.setProperty('position', 'fixed', 'important');
+        el.style.setProperty('top', '0', 'important');
+        el.style.setProperty('left', '0', 'important');
+        el.style.setProperty('right', '0', 'important');
+        el.style.setProperty('width', '100%', 'important');
+        el.style.setProperty('z-index', '1000', 'important'); // Konsistent mit enhanced-styles.css
+        el.style.setProperty('display', 'flex', 'important');
+        el.style.setProperty('visibility', 'visible', 'important');
+        el.style.setProperty('opacity', '1', 'important');
+        el.style.setProperty('transform', 'none', 'important');
+        // Background, padding, backdrop-filter etc. kommen aus enhanced-styles.css
+        
+        // KRITISCH: Stelle sicher, dass kein Parent-Element transform/perspective/filter hat
+        // die position: fixed beeinflussen könnten
+        var parent = el.parentElement;
+        while (parent && parent !== document.body) {
+          var computedStyle = window.getComputedStyle(parent);
+          if (computedStyle.transform !== 'none' || 
+              computedStyle.perspective !== 'none' || 
+              computedStyle.filter !== 'none' ||
+              computedStyle.willChange !== 'auto') {
+            // Parent hat transform/perspective/filter - verschiebe Header weiter nach oben
+            if (parent !== document.body) {
+              el.parentNode.removeChild(el);
+              document.body.insertBefore(el, document.body.firstChild);
+            }
+            break;
+          }
+          parent = parent.parentElement;
+        }
+        
+        // KRITISCH: Entferne transform von html und body, da es position: fixed bricht!
+        // transform: translateZ(0) auf html/body macht position: fixed relativ zum Element statt zum Viewport
+        if (document.documentElement) {
+          document.documentElement.style.setProperty('transform', 'none', 'important');
+          document.documentElement.style.setProperty('-webkit-transform', 'none', 'important');
+        }
+        if (document.body) {
+          document.body.style.setProperty('transform', 'none', 'important');
+          document.body.style.setProperty('-webkit-transform', 'none', 'important');
+        }
+        
+        // Stelle sicher, dass body padding-top hat, damit Content nicht unter Header verschwindet
+        var headerHeight = el.offsetHeight || 70;
+        document.body.style.setProperty('padding-top', headerHeight + 'px', 'important');
+      }
+      
+      // 5. Verhindere Affix-Events
+      navbarMobile.off('affix.bs.affix affix-top.bs.affix affixed-top.bs.affix affixed.bs.affix');
+      navbarMobile.on('affix.bs.affix affix-top.bs.affix affixed-top.bs.affix affixed.bs.affix', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        forceMobileHeaderFixed();
+        return false;
+      });
+    }
+  }
+  
+  // Führe sofort aus
+  forceMobileHeaderFixed();
+  
+  // Führe nach DOM ready aus
+  jQuery(document).ready(function() {
+    forceMobileHeaderFixed();
+    
+    // Bei jedem Scroll prüfen und korrigieren
+    var scrollTimeout;
+    jQuery(window).on('scroll.mobileHeaderFix', function() {
+      if (jQuery(window).width() <= 991) {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(forceMobileHeaderFixed, 10);
+      }
+    });
+    
+    // Bei Resize
+    jQuery(window).on('resize.mobileHeaderFix', function() {
+      if (jQuery(window).width() <= 991) {
+        forceMobileHeaderFixed();
+      }
+    });
+    
+    // Mehrfach ausführen mit Verzögerungen
+    setTimeout(forceMobileHeaderFixed, 50);
+    setTimeout(forceMobileHeaderFixed, 150);
+    setTimeout(forceMobileHeaderFixed, 300);
+    setTimeout(forceMobileHeaderFixed, 500);
+    setTimeout(forceMobileHeaderFixed, 1000);
+  });
+  
+  // Nach window.load (nach interface.js)
+  jQuery(window).on('load', function() {
+    setTimeout(forceMobileHeaderFixed, 100);
+    setTimeout(forceMobileHeaderFixed, 300);
+    setTimeout(forceMobileHeaderFixed, 500);
+  });
+  
+  // MutationObserver um Änderungen zu überwachen
+  if (typeof MutationObserver !== 'undefined') {
+    jQuery(document).ready(function() {
+      var observer = new MutationObserver(function() {
+        if (jQuery(window).width() <= 991) {
+          forceMobileHeaderFixed();
+        }
+      });
+      
+      var navbarMobile = jQuery('.navbar-mobile');
+      if (navbarMobile.length > 0 && navbarMobile[0]) {
+        observer.observe(navbarMobile[0], {
+          attributes: true,
+          attributeFilter: ['class', 'style'],
+          childList: false,
+          subtree: false
+        });
+      }
+    });
+  }
+})();
+</script> 
 
 <style>
 .faq-list {
@@ -1527,20 +1692,39 @@
    ============================================ */
 
 @media (max-width: 991px) {
-  /* Header sticky machen */
-  .navbar-mobile {
+  /* WICHTIG: header-home hat position: absolute, was position: fixed auf Child-Elementen verhindert */
+  /* Lösung: JavaScript verschiebt navbar-mobile aus header-home in body */
+  /* Überschreibe ALLE Regeln, die den Header verstecken oder verschieben könnten */
+  /* Diese Regeln müssen ALLE anderen CSS-Regeln überschreiben, auch aus style.css */
+  /* Überschreibe NUR position, damit enhanced-styles.css die restlichen Styles setzen kann */
+  /* Die Styles aus enhanced-styles.css (background, padding, phone-btn, etc.) werden jetzt verwendet */
+  .navbar-mobile,
+  .navbar-mobile.affix,
+  .navbar-mobile.affix-top,
+  .navbar-mobile.affix-bottom,
+  .navbar-mobile.animated,
+  .navbar-mobile.animated.slideInDown,
+  header .navbar-mobile,
+  .header-home .navbar-mobile,
+  body .navbar-mobile,
+  html .navbar-mobile,
+  body > .navbar-mobile {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    width: 100% !important;
-    z-index: 1003 !important;
-    background-color: rgba(50, 50, 50, 0.95) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
-    padding: 0.8rem 1rem !important;
+    /* Alle anderen Styles (background, padding, phone-btn, etc.) kommen aus enhanced-styles.css */
   }
+  
+  /* KRITISCH: Entferne transform von html und body auf Mobile, da es position: fixed bricht! */
+  /* transform: translateZ(0) auf html/body macht position: fixed relativ zum Element statt zum Viewport */
+  html,
+  body {
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+  
+  /* Mobile Header Styles kommen aus enhanced-styles.css - hier nur Position überschreiben */
   
   /* Padding oben für Content, damit Header nicht überlappt */
   body {
@@ -1791,9 +1975,7 @@
     font-size: 1.4rem !important;
   }
   
-  .navbar-mobile {
-    padding: 0.6rem 0.8rem !important;
-  }
+  /* navbar-mobile Styles kommen aus enhanced-styles.css */
   
   body {
     padding-top: 60px !important;
@@ -1805,8 +1987,8 @@
 }
 </style>
 
-<script>
 $(document).ready(function() {
+  
   // Scroll-Restoration nur deaktivieren, wenn Hash vorhanden ist
   // Ansonsten normale Browser-Scroll-Restoration verwenden
   if (window.location.hash && window.location.hash !== '#top' && window.location.hash !== '') {
