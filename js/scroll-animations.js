@@ -18,17 +18,17 @@
     return;
   }
 
-  // Intersection Observer Options
+  // Intersection Observer Options - Optimiert für flüssigeres Scrollen
   var observerOptions = {
     root: null,
     rootMargin: '0px 0px -50px 0px', // Animation startet etwas früher
-    threshold: 0.1 // Element muss zu 10% sichtbar sein
+    threshold: [0, 0.1, 0.25] // Mehrere Thresholds für flüssigere Animationen
   };
 
   // Mobile: Angepasste Optionen für bessere Performance
   if (window.innerWidth <= 991) {
     observerOptions.rootMargin = '0px 0px -100px 0px';
-    observerOptions.threshold = 0.05;
+    observerOptions.threshold = [0, 0.05];
   }
 
   // Callback für Intersection Observer

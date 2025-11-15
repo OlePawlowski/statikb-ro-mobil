@@ -983,11 +983,23 @@ label.error{
 
 /* Body lock when menu is open */
 /* Verhindere automatisches Scrollen nach oben auf Mobile */
-@media (max-width: 991px) {
-  html {
-    scroll-behavior: auto !important; /* Verhindere smooth scrolling auf Mobile */
-    -webkit-overflow-scrolling: touch;
-  }
+  @media (max-width: 991px) {
+    html {
+      scroll-behavior: smooth !important; /* Smooth scrolling auch auf Mobile für bessere UX */
+      -webkit-overflow-scrolling: touch !important;
+      /* GPU-Beschleunigung für flüssigeres Scrollen */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+    
+    body {
+      /* GPU-Beschleunigung */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-overflow-scrolling: touch !important;
+    }
   
   body.menu-open {
     overflow: hidden;

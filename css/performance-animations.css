@@ -317,6 +317,34 @@ img {
 
 html {
   scroll-behavior: smooth;
+  /* GPU-Beschleunigung für flüssigeres Scrollen */
+  -webkit-overflow-scrolling: touch;
+  /* Optimierung für iOS */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+body {
+  /* GPU-Beschleunigung */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Verhindere Layout-Shifts während des Scrollens */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hauptcontainer für bessere Scroll-Performance */
+.main,
+.container,
+.section {
+  /* GPU-Beschleunigung */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Verhindere Repaints */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

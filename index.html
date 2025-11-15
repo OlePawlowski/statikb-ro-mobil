@@ -1331,7 +1331,10 @@ $(document).ready(function() {
   });
   
   // Scroll Animation - NUR auf Desktop aktiv
+  // Optimiert mit requestAnimationFrame für flüssigeres Scrollen
   if ($(window).width() > 991) {
+    var ticking = false;
+    
     function checkScroll() {
       $('.scroll-animate').each(function() {
         var elementTop = $(this).offset().top;
@@ -1343,9 +1346,23 @@ $(document).ready(function() {
           $(this).addClass('animate');
         }
       });
+      ticking = false;
+    }
+    
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(checkScroll);
+        ticking = true;
+      }
     }
 
-    $(window).on('scroll', checkScroll);
+    // Optimierter Event Listener mit requestAnimationFrame für flüssigeres Scrollen
+    // Native addEventListener mit passive für bessere Performance
+    if (window.addEventListener) {
+      window.addEventListener('scroll', requestTick, { passive: true });
+    } else {
+      $(window).on('scroll', requestTick);
+    }
     checkScroll(); // Check on load
   } else {
     // Auf Mobile: Mache alle scroll-animate Elemente sofort sichtbar
