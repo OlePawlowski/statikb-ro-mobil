@@ -35,13 +35,20 @@
 
 	});
 
-	var wow = new WOW({
-	    offset: 150,          
-	    mobile: false
-	  }
-	);
-	
-	wow.init();
+	// WOW.js nur auf Desktop aktivieren - auf Mobile komplett deaktiviert
+	if ($(window).width() > 991) {
+		var wow = new WOW({
+		    offset: 150,          
+		    mobile: false
+		  }
+		);
+		
+		wow.init();
+	} else {
+		// Auf Mobile: Entferne alle WOW-Klassen sofort, damit keine Animationen ausgelöst werden
+		$('.wow').removeClass('wow fadeInUp fadeInDown fadeInLeft fadeInRight fadeIn slideInUp slideInDown slideInLeft slideInRight slideIn swing bounceIn bounceInUp bounceInDown bounceInLeft bounceInRight flip flipInX flipInY lightSpeedIn rotateIn rotateInDownLeft rotateInDownRight rotateInUpLeft rotateInUpRight rollIn zoomIn zoomInDown zoomInLeft zoomInRight zoomInUp');
+		$('.wow').addClass('animated'); // Mache alle sofort sichtbar
+	}
 
 	var navbarDesctop=$('.navbar-desctop');
 	var navbarMobile=$('.navbar-mobile');

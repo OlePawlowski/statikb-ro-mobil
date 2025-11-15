@@ -216,11 +216,41 @@ img {
   .service-item.slide-in-up,
   .service-item.fade-in,
   .scroll-animate,
-  .scroll-animate.animate {
+  .scroll-animate.animate,
+  /* WOW.js Animationen deaktivieren */
+  .wow,
+  .wow.animated,
+  .fadeInUp,
+  .fadeInUp.animated,
+  .fadeInDown,
+  .fadeInLeft,
+  .fadeInRight,
+  .slideInUp,
+  .slideInDown,
+  .slideInLeft,
+  .slideInRight,
+  .swing,
+  .bounceIn,
+  .zoomIn {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
     animation: none !important;
+    visibility: visible !important;
+  }
+  
+  /* Spezifisch für services-section: Keine Animationen auf Mobile */
+  .services-section .col-service,
+  .services-section .col-service.wow,
+  .services-section .col-service.fadeInUp,
+  .services-section .col-service.slide-in-left,
+  .services-section .col-service.slide-in-right,
+  .services-section .col-service.slide-in-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    visibility: visible !important;
   }
   
   /* Reduziere will-change auf Mobile */
