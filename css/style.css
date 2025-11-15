@@ -1422,19 +1422,32 @@ label.error{
 
 /* Desktop: Hover-Effekte für Submenü */
 @media (min-width: 992px) {
-  /* Separater Submenü-Toggle-Button auf Desktop */
+  /* Separater Submenü-Toggle-Button auf Desktop - inline neben dem Link */
+  .nav-item.has-submenu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .nav-item.has-submenu > a {
+    flex: 1;
+  }
+  
   .submenu-toggle {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: none;
     padding: 0;
-    margin-left: 8px;
+    margin: 0;
     cursor: pointer;
-    vertical-align: middle;
     color: #ffb344;
     font-size: 0.7em;
     line-height: 1;
-    transition: transform 0.3s ease;
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
   }
   
   .submenu-toggle .submenu-arrow {
