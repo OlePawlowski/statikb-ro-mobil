@@ -1609,19 +1609,27 @@ $(document).ready(function() {
     }
   );
   
-  // Verhindert Scrolling über den Footer hinaus
-  $(window).on('scroll', function() {
-    var footer = $('#footer');
-    if (footer.length) {
-      var footerBottom = footer.offset().top + footer.outerHeight();
-      var windowBottom = $(window).scrollTop() + $(window).height();
-      
-      // Wenn wir über den Footer hinaus scrollen, stoppen wir das Scrolling
-      if (windowBottom > footerBottom) {
-        $('html, body').scrollTop(footerBottom - $(window).height());
+  // Verhindert Scrolling über den Footer hinaus - NUR auf Desktop
+  // Auf Mobile deaktiviert, da es das normale Scroll-Verhalten stört
+  if ($(window).width() > 991) {
+    $(window).on('scroll', function() {
+      // Nur auf Desktop aktiv
+      if ($(window).width() <= 991) {
+        return;
       }
-    }
-  });
+      
+      var footer = $('#footer');
+      if (footer.length) {
+        var footerBottom = footer.offset().top + footer.outerHeight();
+        var windowBottom = $(window).scrollTop() + $(window).height();
+        
+        // Wenn wir über den Footer hinaus scrollen, stoppen wir das Scrolling
+        if (windowBottom > footerBottom) {
+          $('html, body').scrollTop(footerBottom - $(window).height());
+        }
+      }
+    });
+  }
 
   // Hamburger Menu Toggle
   var scrollPosition = 0;
