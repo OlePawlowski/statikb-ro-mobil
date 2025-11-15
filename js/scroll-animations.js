@@ -55,6 +55,13 @@
 
     // Beobachte alle Elemente
     animatedElements.forEach(function(element) {
+      // Auf Mobile: Überspringe service-item, um Blinken zu vermeiden
+      if (window.innerWidth <= 991 && element.classList.contains('service-item')) {
+        // Mache service-item sofort sichtbar ohne Animation
+        element.classList.add('animated');
+        return;
+      }
+      
       // Überspringe wenn bereits animiert (z.B. bei Page-Reload)
       if (!element.classList.contains('animated')) {
         observer.observe(element);

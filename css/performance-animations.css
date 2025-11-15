@@ -200,10 +200,20 @@ img {
    ============================================ */
 
 @media (max-width: 991px) {
+  /* Deaktiviere Slide-in-Animationen für service-item auf Mobile, um Blinken zu vermeiden */
+  .service-item.slide-in-left,
+  .service-item.slide-in-right,
+  .service-item.slide-in-up,
+  .service-item.fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
   /* Reduziere Animationen auf Mobile für bessere Performance */
-  .slide-in-left,
-  .slide-in-right,
-  .slide-in-up {
+  .slide-in-left:not(.service-item),
+  .slide-in-right:not(.service-item),
+  .slide-in-up:not(.service-item) {
     transform: translateY(30px);
     transition-duration: 0.5s;
   }
@@ -290,7 +300,7 @@ iframe[loading="lazy"] {
 
 img[loading="lazy"] {
   content-visibility: auto;
-  background: #272727;
+  background: none;
 }
 
 /* ============================================
