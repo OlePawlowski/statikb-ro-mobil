@@ -790,9 +790,11 @@
   height: auto !important;
 }
 
-/* Verhindert Scrollen über den Footer hinaus */
+/* Verhindert nur horizontales Scrollen, vertikales Scrollen bleibt erlaubt */
 html, body {
   overflow-x: hidden;
+  overflow-y: auto !important; /* Stelle sicher, dass vertikales Scrollen funktioniert */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling auf iOS */
 }
 
 .footer {
@@ -1083,25 +1085,33 @@ $(document).ready(function() {
     });
   }
   
-  // Stelle sicher, dass die Dokumentenhöhe korrekt ist nach dem Laden
-  $(window).on('load', function() {
-    var footer = $('.footer');
-    if (footer.length) {
-      var footerTop = footer.offset().top;
-      var footerHeight = footer.outerHeight();
-      var pageLines = $('.page-lines');
-      var pageLinesHeight = pageLines.length ? pageLines.outerHeight() : 0;
-      var bodyHeight = footerTop + footerHeight + pageLinesHeight;
-      
-      // Stelle sicher, dass body/html nicht höher als nötig ist
-      if ($(document).height() > bodyHeight + 50) {
-        // Es gibt zusätzlichen Platz - möglicherweise durch scroll-margin oder andere Elemente
-        // Setze max-height auf body, um Scrollen zu verhindern
-        $('body').css('max-height', bodyHeight + 'px');
-        $('html').css('max-height', bodyHeight + 'px');
+  // Stelle sicher, dass die Dokumentenhöhe korrekt ist nach dem Laden - NUR auf Desktop
+  // Auf Mobile deaktiviert, da es das normale Scroll-Verhalten blockiert
+  if ($(window).width() > 991) {
+    $(window).on('load', function() {
+      // Nur auf Desktop aktiv
+      if ($(window).width() <= 991) {
+        return;
       }
-    }
-  });
+      
+      var footer = $('.footer');
+      if (footer.length) {
+        var footerTop = footer.offset().top;
+        var footerHeight = footer.outerHeight();
+        var pageLines = $('.page-lines');
+        var pageLinesHeight = pageLines.length ? pageLines.outerHeight() : 0;
+        var bodyHeight = footerTop + footerHeight + pageLinesHeight;
+        
+        // Stelle sicher, dass body/html nicht höher als nötig ist
+        if ($(document).height() > bodyHeight + 50) {
+          // Es gibt zusätzlichen Platz - möglicherweise durch scroll-margin oder andere Elemente
+          // Setze max-height auf body, um Scrollen zu verhindern
+          $('body').css('max-height', bodyHeight + 'px');
+          $('html').css('max-height', bodyHeight + 'px');
+        }
+      }
+    });
+  }
 
   // Simuliere einen Click auf die Drohne beim Laden der Seite, damit sie vertikal zentriert ist
   // Aber verhindere die Navigation

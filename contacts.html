@@ -374,6 +374,15 @@
     </div>
   </div>
 
+<style>
+/* Stelle sicher, dass vertikales Scrollen auf Mobile funktioniert */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important; /* Stelle sicher, dass vertikales Scrollen funktioniert */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling auf iOS */
+}
+</style>
+
 <!-- SCRIPTS -->
 
 <script src="js/jquery.min.js"></script>
