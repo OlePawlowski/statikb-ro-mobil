@@ -1049,13 +1049,20 @@ $(document).ready(function() {
   }
   
   // Verhindere Scrollen über den Footer hinaus - NUR auf Desktop
-  // Auf Mobile deaktiviert, da es das normale Scroll-Verhalten stört
+  // Auf Mobile komplett deaktiviert, da es das normale Scroll-Verhalten stört
   if ($(window).width() > 991) {
     var lastScrollTop = 0;
     var scrollTimeout;
+    var isScrolling = false; // Flag um zu verhindern, dass während des Scrollens korrigiert wird
+    
     $(window).on('scroll', function() {
       // Nur auf Desktop aktiv
       if ($(window).width() <= 991) {
+        return;
+      }
+      
+      // Wenn gerade gescrollt wird, nicht korrigieren
+      if (isScrolling) {
         return;
       }
       
@@ -1074,14 +1081,21 @@ $(document).ready(function() {
           // Maximale Scroll-Position: Footer sollte am unteren Rand des Viewports sein
           var maxScrollTop = footerTop + footerHeight + pageLinesHeight - windowHeight;
           
-          // Wenn wir über die maximale Position hinaus scrollen, korrigiere es sofort
-          if (scrollTop > maxScrollTop) {
-            $('html, body').stop(true).scrollTop(maxScrollTop);
+          // Nur korrigieren wenn wirklich über die maximale Position hinaus gescrollt wurde
+          // UND wenn nicht gerade eine Animation läuft
+          if (scrollTop > maxScrollTop && !$('html, body').is(':animated')) {
+            isScrolling = true;
+            // Sanft zur maximalen Position scrollen
+            $('html, body').animate({
+              scrollTop: maxScrollTop
+            }, 200, function() {
+              isScrolling = false;
+            });
           }
         }
         
         lastScrollTop = scrollTop;
-      }, 10);
+      }, 50); // Längeres Timeout, um weniger aggressiv zu sein
     });
   }
   

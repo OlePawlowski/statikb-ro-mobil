@@ -1565,7 +1565,8 @@ $(document).ready(function() {
     if( target.length ) {
       event.preventDefault();
       var offset = 200; // Offset für Navigation-Bar (erhöht für bessere Sichtbarkeit)
-      $('html, body').stop().animate({
+      // Kein stop(), da das Scrollen abrupt stoppen könnte - direkt animieren
+      $('html, body').animate({
         scrollTop: target.offset().top - offset
       }, 1000);
     }
@@ -1602,11 +1603,18 @@ $(document).ready(function() {
   );
   
   // Verhindert Scrolling über den Footer hinaus - NUR auf Desktop
-  // Auf Mobile deaktiviert, da es das normale Scroll-Verhalten stört
+  // Auf Mobile komplett deaktiviert, da es das normale Scroll-Verhalten stört
   if ($(window).width() > 991) {
+    var isScrolling = false; // Flag um zu verhindern, dass während des Scrollens korrigiert wird
+    
     $(window).on('scroll', function() {
       // Nur auf Desktop aktiv
       if ($(window).width() <= 991) {
+        return;
+      }
+      
+      // Wenn gerade gescrollt wird, nicht korrigieren
+      if (isScrolling) {
         return;
       }
       
@@ -1615,9 +1623,17 @@ $(document).ready(function() {
         var footerBottom = footer.offset().top + footer.outerHeight();
         var windowBottom = $(window).scrollTop() + $(window).height();
         
-        // Wenn wir über den Footer hinaus scrollen, stoppen wir das Scrolling
-        if (windowBottom > footerBottom) {
-          $('html, body').scrollTop(footerBottom - $(window).height());
+        // Nur korrigieren wenn wirklich über den Footer hinaus gescrollt wurde
+        // UND wenn nicht gerade eine Animation läuft
+        if (windowBottom > footerBottom && !$('html, body').is(':animated')) {
+          var maxScrollTop = footerBottom - $(window).height();
+          isScrolling = true;
+          // Sanft zur maximalen Position scrollen
+          $('html, body').animate({
+            scrollTop: maxScrollTop
+          }, 200, function() {
+            isScrolling = false;
+          });
         }
       }
     });

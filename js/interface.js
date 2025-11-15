@@ -254,13 +254,16 @@
 
 
 
-	$(window).stellar({
-	  	responsive: true,
-	  	horizontalScrolling: false,
-	  	hideDistantElements: false,
-	  	horizontalOffset: 0,
-	  	verticalOffset: 0,
-	});
+	// Stellar.js nur auf Desktop aktivieren - auf Mobile deaktiviert, da es Scrollen stören kann
+	if ($(window).width() > 991) {
+		$(window).stellar({
+		  	responsive: true,
+		  	horizontalScrolling: false,
+		  	hideDistantElements: false,
+		  	horizontalOffset: 0,
+		  	verticalOffset: 0,
+		});
+	}
 
 
 
