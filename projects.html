@@ -136,6 +136,9 @@
             </li>
             <li class="nav-item has-submenu">
               <a href="projects.html">Leistungsportfolio</a>
+              <button class="submenu-toggle" aria-label="Submenü öffnen/schließen">
+                <span class="submenu-arrow">▼</span>
+              </button>
               <ul class="nav-submenu">
                 <li><a href="projects.html#tragwerksplanung">Tragwerksplanung</a></li>
                 <li><a href="projects.html#standsicherheitsnachweis">Standsicherheitsnachweis</a></li>
@@ -1746,6 +1749,35 @@
   
   /* Mobile Header Styles kommen aus enhanced-styles.css - hier nur Position überschreiben */
   
+  /* Separater Submenü-Toggle-Button */
+  .submenu-toggle {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-left: 8px;
+    cursor: pointer;
+    vertical-align: middle;
+    color: #ffb344;
+    font-size: 0.7em;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+  
+  .submenu-toggle .submenu-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-item.has-submenu.active .submenu-toggle .submenu-arrow {
+    transform: rotate(180deg);
+  }
+  
+  /* Verstecke ::after Pfeil, da wir jetzt einen echten Button haben */
+  .nav-item.has-submenu > a::after {
+    display: none !important;
+  }
+  
   /* Padding oben für Content, damit Header nicht überlappt */
   body {
     padding-top: 70px !important;
@@ -2167,35 +2199,29 @@ $(document).ready(function() {
   }
 
   // Dropdown-Pfeil für Submenü - Mobile und Desktop
-  // WICHTIG: Auf Mobile: Klick auf Text = Navigation, Klick auf Pfeil = Toggle Submenü
-  // Auf Desktop: Hover öffnet Submenü, Link führt direkt zur Seite
-  $(document).on('click', '.nav-item.has-submenu > a', function(e) {
-    var $link = $(this);
-    var $navItem = $link.parent('.nav-item.has-submenu');
+  // Separater Toggle-Button für den Pfeil
+  $(document).on('click', '.submenu-toggle', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var $navItem = $(this).parent('.nav-item.has-submenu');
+    $navItem.toggleClass('active');
     
-    // Auf Mobile: Prüfe Klick-Position
-    if ($(window).width() <= 991) {
-      // Prüfe ob Klick im rechten Bereich (Pfeil-Bereich) war
-      var linkWidth = $link.outerWidth();
-      var clickX = e.pageX - $link.offset().left;
-      var linkTextWidth = linkWidth - 30; // Letzte 30px sind für den Pfeil
-      
-      // Wenn Klick im rechten Bereich (Pfeil-Bereich), dann Toggle Submenü
-      if (clickX > linkTextWidth) {
-        e.preventDefault();
-        e.stopPropagation();
-        $navItem.toggleClass('active');
-        
-        // Force reflow um sicherzustellen, dass CSS angewendet wird
-        void $navItem[0].offsetHeight;
-        
-        return false;
+    // Force reflow um sicherzustellen, dass CSS angewendet wird
+    void $navItem[0].offsetHeight;
+    
+    return false;
+  });
+  
+  // Link "Leistungsportfolio" navigiert direkt (nur auf Desktop wird Menü geschlossen)
+  $(document).on('click', '.nav-item.has-submenu > a', function(e) {
+    // Auf Desktop: Menü schließen
+    if ($(window).width() > 991) {
+      var href = $(this).attr('href');
+      if (href && href !== '#' && !href.match(/^#/)) {
+        closeMenu();
       }
-      // Sonst: Klick auf Text = Navigation (lass Event durch)
-      return true;
     }
-    // Auf Desktop: Link führt direkt zur Seite (Hover öffnet Submenü automatisch)
-    // Menü wird durch den allgemeinen Link-Handler geschlossen
+    // Auf Mobile: Link navigiert direkt, Submenü-Toggle wird durch separaten Button behandelt
   });
 
   // Untermenü öffnet sich beim Hover, Link führt direkt zur Seite
@@ -2238,17 +2264,15 @@ $(document).ready(function() {
       }
     }
     // Wenn es der Hauptlink eines Submenü-Items ist (z.B. "Leistungsportfolio")
+    // Wird bereits durch den Toggle-Handler behandelt - hier nichts tun
     else if (isSubmenuToggle) {
-      // Auf Mobile: Link navigiert direkt (wenn nicht auf Pfeil geklickt wurde)
-      if ($(window).width() <= 991) {
-        // Navigiere und schließe Menü
-        closeMenu();
-      } else {
-        // Auf Desktop: Link führt direkt zur Seite, schließe Menü
+      // Auf Desktop: Link führt direkt zur Seite, schließe Menü
+      if ($(window).width() > 991) {
         if (href && href !== '#' && !href.match(/^#/)) {
           closeMenu();
         }
       }
+      // Auf Mobile: Wird durch Toggle-Handler behandelt
     }
     // Wenn es ein normaler Link ist (nicht Submenü-Toggle oder Submenü-Link)
     else {

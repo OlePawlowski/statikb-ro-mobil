@@ -1412,7 +1412,7 @@ label.error{
   margin: 16px 0 0 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   align-items: center;
   opacity: 0;
   max-height: 0;
@@ -1422,20 +1422,34 @@ label.error{
 
 /* Desktop: Hover-Effekte für Submenü */
 @media (min-width: 992px) {
-  /* Dropdown-Pfeil für Desktop-Menü Items mit Submenü */
-  .nav-item.has-submenu > a::after {
-    content: '▼';
+  /* Separater Submenü-Toggle-Button auf Desktop */
+  .submenu-toggle {
     display: inline-block;
+    background: transparent;
+    border: none;
+    padding: 0;
     margin-left: 8px;
-    font-size: 0.7em;
-    color: #ffb344;
-    transition: transform 0.3s ease;
+    cursor: pointer;
     vertical-align: middle;
+    color: #ffb344;
+    font-size: 0.7em;
+    line-height: 1;
+    transition: transform 0.3s ease;
   }
   
-  .nav-item.has-submenu:hover > a::after,
-  .nav-item.has-submenu.active > a::after {
+  .submenu-toggle .submenu-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-item.has-submenu:hover .submenu-toggle .submenu-arrow,
+  .nav-item.has-submenu.active .submenu-toggle .submenu-arrow {
     transform: rotate(180deg);
+  }
+  
+  /* Verstecke ::after Pfeil, da wir jetzt einen echten Button haben */
+  .nav-item.has-submenu > a::after {
+    display: none !important;
   }
   
   /* Desktop: Submenü öffnet sich beim Hover ODER wenn active Klasse gesetzt ist */
