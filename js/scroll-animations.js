@@ -48,20 +48,28 @@
 
   // Initialisiere nach DOM-Ready
   function initScrollAnimations() {
-    // Finde alle Elemente mit Animation-Klassen
+    // Auf Mobile: DEAKTIVIERE ALLE ANIMATIONEN KOMPLETT
+    if (window.innerWidth <= 991) {
+      var animatedElements = document.querySelectorAll(
+        '.slide-in-left, .slide-in-right, .slide-in-up, .fade-in, .scroll-animate'
+      );
+      animatedElements.forEach(function(element) {
+        // Mache alle Elemente sofort sichtbar ohne Animation
+        element.classList.add('animated');
+        if (element.classList.contains('scroll-animate')) {
+          element.classList.add('animate');
+        }
+      });
+      return; // Beende Funktion auf Mobile
+    }
+    
+    // Desktop: Normale Animationen
     var animatedElements = document.querySelectorAll(
       '.slide-in-left, .slide-in-right, .slide-in-up, .fade-in'
     );
 
     // Beobachte alle Elemente
     animatedElements.forEach(function(element) {
-      // Auf Mobile: Überspringe service-item, um Blinken zu vermeiden
-      if (window.innerWidth <= 991 && element.classList.contains('service-item')) {
-        // Mache service-item sofort sichtbar ohne Animation
-        element.classList.add('animated');
-        return;
-      }
-      
       // Überspringe wenn bereits animiert (z.B. bei Page-Reload)
       if (!element.classList.contains('animated')) {
         observer.observe(element);

@@ -200,22 +200,27 @@ img {
    ============================================ */
 
 @media (max-width: 991px) {
-  /* Deaktiviere Slide-in-Animationen für service-item auf Mobile, um Blinken zu vermeiden */
+  /* DEAKTIVIERE ALLE ANIMATIONEN AUF MOBILE - KEINE NERVIGEN EFFEKTE */
+  .slide-in-left,
+  .slide-in-right,
+  .slide-in-up,
+  .slide-in-left.animated,
+  .slide-in-right.animated,
+  .slide-in-up.animated,
+  .fade-in,
+  .fade-in.animated,
+  .animate-on-scroll,
+  .animate-on-scroll.animated,
   .service-item.slide-in-left,
   .service-item.slide-in-right,
   .service-item.slide-in-up,
-  .service-item.fade-in {
+  .service-item.fade-in,
+  .scroll-animate,
+  .scroll-animate.animate {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
-  }
-  
-  /* Reduziere Animationen auf Mobile für bessere Performance */
-  .slide-in-left:not(.service-item),
-  .slide-in-right:not(.service-item),
-  .slide-in-up:not(.service-item) {
-    transform: translateY(30px);
-    transition-duration: 0.5s;
+    animation: none !important;
   }
   
   /* Reduziere will-change auf Mobile */

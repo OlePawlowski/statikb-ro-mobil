@@ -1330,22 +1330,27 @@ $(document).ready(function() {
     $(this).next('.faq-answer-enhanced').toggleClass('active');
   });
   
-  // Scroll Animation
-  function checkScroll() {
-    $('.scroll-animate').each(function() {
-      var elementTop = $(this).offset().top;
-      var elementBottom = elementTop + $(this).outerHeight();
-      var viewportTop = $(window).scrollTop();
-      var viewportBottom = viewportTop + $(window).height();
+  // Scroll Animation - NUR auf Desktop aktiv
+  if ($(window).width() > 991) {
+    function checkScroll() {
+      $('.scroll-animate').each(function() {
+        var elementTop = $(this).offset().top;
+        var elementBottom = elementTop + $(this).outerHeight();
+        var viewportTop = $(window).scrollTop();
+        var viewportBottom = viewportTop + $(window).height();
 
-      if (elementBottom > viewportTop && elementTop < viewportBottom) {
-        $(this).addClass('animate');
-      }
-    });
+        if (elementBottom > viewportTop && elementTop < viewportBottom) {
+          $(this).addClass('animate');
+        }
+      });
+    }
+
+    $(window).on('scroll', checkScroll);
+    checkScroll(); // Check on load
+  } else {
+    // Auf Mobile: Mache alle scroll-animate Elemente sofort sichtbar
+    $('.scroll-animate').addClass('animate');
   }
-
-  $(window).on('scroll', checkScroll);
-  checkScroll(); // Check on load
 
   // Enhanced Service Card Animations
   $('.service-card-enhanced').hover(

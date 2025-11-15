@@ -1901,15 +1901,27 @@ label.error{
   height: 100vh;
 }
 
-/* Auf Mobile: height: 100vh entfernen, damit man scrollen kann (außer auf index.html) */
+/* Auf Mobile: height: 100vh entfernen, damit man scrollen kann */
 @media (max-width: 991px) {
   .main {
     height: auto !important;
+    min-height: auto !important;
+    overflow-y: auto !important;
   }
   
-  /* Auf index.html: height: 100vh beibehalten für Iframe */
+  /* Auf index.html: Iframe-Bereich kann scrollen */
   body.home-page .main {
-    height: 100vh !important;
+    height: auto !important;
+    min-height: 100vh !important;
+  }
+  
+  /* Stelle sicher, dass html und body scrollen können */
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    height: auto !important;
+    max-height: none !important;
   }
 }
 
