@@ -1754,19 +1754,26 @@
     position: relative;
   }
   
+  .nav-item.has-submenu > a {
+    position: relative;
+    display: inline-block;
+  }
+  
   .submenu-toggle {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 40px;
-    height: 100%;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
     background: transparent;
     border: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
-    z-index: 10;
+    z-index: 20;
     opacity: 0;
+    pointer-events: auto;
   }
   
   .submenu-toggle .submenu-arrow {
@@ -1776,6 +1783,7 @@
   /* Zeige ::after Pfeil wieder an (wie vorher) */
   .nav-item.has-submenu > a::after {
     display: inline-block !important;
+    pointer-events: none;
   }
   
   .nav-item.has-submenu.active > a::after {
@@ -2203,10 +2211,11 @@ $(document).ready(function() {
   }
 
   // Dropdown-Pfeil für Submenü - Mobile und Desktop
-  // Separater Toggle-Button für den Pfeil
+  // Separater Toggle-Button für den Pfeil - mit höchster Priorität
   $(document).on('click', '.submenu-toggle', function(e) {
     e.preventDefault();
     e.stopPropagation();
+    e.stopImmediatePropagation();
     var $navItem = $(this).parent('.nav-item.has-submenu');
     $navItem.toggleClass('active');
     
@@ -2216,8 +2225,18 @@ $(document).ready(function() {
     return false;
   });
   
-  // Link "Leistungsportfolio" navigiert direkt (nur auf Desktop wird Menü geschlossen)
+  // Link "Leistungsportfolio" navigiert direkt
+  // WICHTIG: Prüfe ob Event vom Button kam
   $(document).on('click', '.nav-item.has-submenu > a', function(e) {
+    // Prüfe ob Event vom Button kam (Event-Target)
+    var target = e.target || e.originalEvent?.target;
+    if ($(target).closest('.submenu-toggle').length > 0) {
+      // Event kam vom Button - nichts tun
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+    
     // Auf Desktop: Menü schließen
     if ($(window).width() > 991) {
       var href = $(this).attr('href');

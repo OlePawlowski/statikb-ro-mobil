@@ -1427,19 +1427,26 @@ label.error{
     position: relative;
   }
   
+  .nav-item.has-submenu > a {
+    position: relative;
+    display: inline-block;
+  }
+  
   .submenu-toggle {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 40px;
-    height: 100%;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
     background: transparent;
     border: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
-    z-index: 10;
+    z-index: 20;
     opacity: 0;
+    pointer-events: auto;
   }
   
   .submenu-toggle .submenu-arrow {
@@ -1449,6 +1456,7 @@ label.error{
   /* Zeige ::after Pfeil wieder an (wie vorher) */
   .nav-item.has-submenu > a::after {
     display: inline-block !important;
+    pointer-events: none;
   }
   
   .nav-item.has-submenu:hover > a::after,
