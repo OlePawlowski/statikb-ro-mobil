@@ -1430,11 +1430,12 @@ label.error{
   .nav-item.has-submenu > a {
     position: relative;
     display: inline-block;
+    padding-right: 30px; /* Platz für Button */
   }
   
   .submenu-toggle {
     position: absolute;
-    right: -30px;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 30px;
@@ -1444,7 +1445,7 @@ label.error{
     padding: 0;
     margin: 0;
     cursor: pointer;
-    z-index: 20;
+    z-index: 30;
     opacity: 0;
     pointer-events: auto;
   }
@@ -1453,10 +1454,12 @@ label.error{
     display: none;
   }
   
-  /* Zeige ::after Pfeil wieder an (wie vorher) */
+  /* Zeige ::after Pfeil wieder an (wie vorher), aber mit pointer-events: none */
   .nav-item.has-submenu > a::after {
     display: inline-block !important;
-    pointer-events: none;
+    pointer-events: none !important;
+    position: relative;
+    z-index: 1;
   }
   
   .nav-item.has-submenu:hover > a::after,
