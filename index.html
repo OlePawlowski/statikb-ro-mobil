@@ -34,22 +34,14 @@
     } else {
       window.location.hash = '';
     }
-    // Setze Scroll-Position auf oben - mehrfach versuchen
-    function scrollToTop() {
-      window.scrollTo(0, 0);
-      if (document.documentElement) {
-        document.documentElement.scrollTop = 0;
-      }
-      if (document.body) {
-        document.body.scrollTop = 0;
-      }
+    // Setze Scroll-Position auf oben - nur einmal, nicht aggressiv
+    window.scrollTo(0, 0);
+    if (document.documentElement) {
+      document.documentElement.scrollTop = 0;
     }
-    scrollToTop();
-    // Wiederhole mehrmals, um sicherzugehen
-    setTimeout(scrollToTop, 0);
-    setTimeout(scrollToTop, 10);
-    setTimeout(scrollToTop, 50);
-    setTimeout(scrollToTop, 100);
+    if (document.body) {
+      document.body.scrollTop = 0;
+    }
     
     // Speichere Hash für späteres Scrollen
     window._pendingHash = hash;
@@ -89,7 +81,7 @@
     <!-- Header -->
     <header id="top" class="header-home">
         <div class="brand-panel">
-          <a href="#top" class="brand js-target-scroll">
+          <a href="index.html" class="brand">
             <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
           </a>
           <div class="brand-name">Statikbüro Berlin</div>
@@ -126,7 +118,7 @@
         <nav class="navbar-desctop-des" id="desktop-nav-menu">
           <!-- Logo oben rechts -->
           <div class="nav-logo-top-right">
-            <a href="#top" class="brand-des js-target-scroll">
+            <a href="index.html" class="brand-des">
               <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
             </a>
           </div>
@@ -191,7 +183,7 @@
         <!-- Navigation Mobile -->
 
         <nav class="navbar-mobile">
-          <a href="#top" class="brand js-target-scroll">
+          <a href="index.html" class="brand">
             <img src="img/colored-logo.png" alt="Statikbüro24">
           </a>
           
@@ -895,7 +887,7 @@
         <div class="container">
           <div class="row-base row">
             <div class="col-base text-left-md col-md-4">
-              <a href="#" class="brand">
+              <a href="index.html" class="brand">
                 <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
               </a>
             </div>
@@ -1162,17 +1154,14 @@
 
 <script>
 // Deaktiviere Browser-eigene Scroll-Restoration auf Mobile (sofort, bevor jQuery geladen ist)
-if (window.history && window.history.scrollRestoration) {
-  if (window.innerWidth <= 991) {
-    window.history.scrollRestoration = 'manual';
-  }
-}
-
 $(document).ready(function() {
-  // Deaktiviere Browser-eigene Scroll-Restoration auf Mobile (erneut prüfen)
-  if (window.history && window.history.scrollRestoration) {
-    if ($(window).width() <= 991) {
-      window.history.scrollRestoration = 'manual';
+  // Scroll-Restoration nur deaktivieren, wenn Hash vorhanden ist
+  // Ansonsten normale Browser-Scroll-Restoration verwenden
+  if (window.location.hash && window.location.hash !== '#top' && window.location.hash !== '') {
+    if (window.history && window.history.scrollRestoration) {
+      if ($(window).width() <= 991) {
+        window.history.scrollRestoration = 'manual';
+      }
     }
   }
   
@@ -1219,13 +1208,8 @@ $(document).ready(function() {
     delete window._pendingHash;
   }
   
-  // Verhindere automatisches Scrollen beim Laden der Seite (nur Desktop)
-  if ($(window).width() > 991) {
-    if (window.location.hash === '' || window.location.hash === '#top') {
-      // Kein Hash vorhanden - verhindere Scrollen zum Anfang (nur Desktop)
-      $(window).scrollTop(0);
-    }
-  }
+  // Kein automatisches Scrollen beim Laden der Seite
+  // Browser-Scroll-Verhalten bleibt normal, außer bei Hash-Links
   
   // Verhindere automatisches Scrollen bei Links ohne Hash
   $('a[href="#"], a[href="#top"]').on('click', function(e) {

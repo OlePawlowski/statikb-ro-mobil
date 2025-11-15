@@ -1524,27 +1524,19 @@
 </style>
 
 <script>
-// Deaktiviere Browser-eigene Scroll-Restoration auf Mobile
-if (window.history && window.history.scrollRestoration) {
-  if (window.innerWidth <= 991) {
-    window.history.scrollRestoration = 'manual';
-  }
-}
-
 $(document).ready(function() {
-  // Deaktiviere Browser-eigene Scroll-Restoration auf Mobile (erneut prüfen)
-  if (window.history && window.history.scrollRestoration) {
-    if ($(window).width() <= 991) {
-      window.history.scrollRestoration = 'manual';
+  // Scroll-Restoration nur deaktivieren, wenn Hash vorhanden ist
+  // Ansonsten normale Browser-Scroll-Restoration verwenden
+  if (window.location.hash && window.location.hash !== '#top' && window.location.hash !== '') {
+    if (window.history && window.history.scrollRestoration) {
+      if ($(window).width() <= 991) {
+        window.history.scrollRestoration = 'manual';
+      }
     }
   }
   
-  // Verhindere automatisches Scrollen beim Laden der Seite (nur Desktop)
-  if ($(window).width() > 991) {
-    if (window.location.hash === '' || window.location.hash === '#top') {
-      $(window).scrollTop(0);
-    }
-  }
+  // Kein automatisches Scrollen beim Laden der Seite
+  // Browser-Scroll-Verhalten bleibt normal, außer bei Hash-Links
   
   // Verhindere automatisches Scrollen bei Links ohne Hash
   $('a[href="#"], a[href="#top"]').on('click', function(e) {
