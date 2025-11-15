@@ -376,10 +376,30 @@
 
 <style>
 /* Stelle sicher, dass vertikales Scrollen auf Mobile funktioniert */
-html, body {
-  overflow-x: hidden;
-  overflow-y: auto !important; /* Stelle sicher, dass vertikales Scrollen funktioniert */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling auf iOS */
+@media (max-width: 991px) {
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important; /* Stelle sicher, dass vertikales Scrollen funktioniert */
+    -webkit-overflow-scrolling: touch !important; /* Smooth scrolling auf iOS */
+    height: auto !important; /* Verhindere height: 100vh, das Scrollen blockieren könnte */
+    max-height: none !important; /* Verhindere max-height, das Scrollen blockieren könnte */
+  }
+  
+  /* Stelle sicher, dass der Loader das Scrollen nicht blockiert */
+  .loader {
+    display: none !important;
+  }
+  
+  /* Stelle sicher, dass body.menu-open das Scrollen nicht dauerhaft blockiert */
+  body.menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+  }
+  
+  body:not(.menu-open) {
+    overflow-y: auto !important;
+    position: relative !important;
+  }
 }
 </style>
 
@@ -537,6 +557,44 @@ $(document).ready(function() {
       'opacity': '1 !important'
     });
   }, 100);
+  
+  // Stelle sicher, dass der Loader ausgeblendet wird und das Scrollen nicht blockiert
+  $(window).on('load', function() {
+    $('.loader').fadeOut(300, function() {
+      // Nach dem Ausblenden des Loaders: Stelle sicher, dass Scrollen funktioniert
+      if ($(window).width() <= 991) {
+        $('body').css({
+          'overflow-y': 'auto',
+          'position': 'relative',
+          'height': 'auto',
+          'max-height': 'none'
+        });
+        $('html').css({
+          'overflow-y': 'auto',
+          'height': 'auto',
+          'max-height': 'none'
+        });
+      }
+    });
+  });
+  
+  // Fallback: Verstecke Loader nach kurzer Zeit, falls window.load nicht feuert
+  setTimeout(function() {
+    $('.loader').fadeOut(300);
+    if ($(window).width() <= 991) {
+      $('body').css({
+        'overflow-y': 'auto',
+        'position': 'relative',
+        'height': 'auto',
+        'max-height': 'none'
+      });
+      $('html').css({
+        'overflow-y': 'auto',
+        'height': 'auto',
+        'max-height': 'none'
+      });
+    }
+  }, 1000);
 });
 </script>
 </body>
