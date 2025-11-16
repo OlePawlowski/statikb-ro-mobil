@@ -136,9 +136,6 @@
             </li>
             <li class="nav-item has-submenu">
               <a href="projects.html">Leistungsportfolio</a>
-              <button class="submenu-toggle" aria-label="Submenü öffnen/schließen">
-                <span class="submenu-arrow">▼</span>
-              </button>
               <ul class="nav-submenu">
                 <li><a href="projects.html#tragwerksplanung">Tragwerksplanung</a></li>
                 <li><a href="projects.html#standsicherheitsnachweis">Standsicherheitsnachweis</a></li>
@@ -1749,49 +1746,7 @@
   
   /* Mobile Header Styles kommen aus enhanced-styles.css - hier nur Position überschreiben */
   
-  /* Separater Submenü-Toggle-Button - unsichtbar, aber klickbar über dem ::after */
-  .nav-item.has-submenu {
-    position: relative;
-  }
-  
-  .nav-item.has-submenu > a {
-    position: relative;
-    display: inline-block;
-    padding-right: 30px; /* Platz für Button */
-  }
-  
-  .submenu-toggle {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    z-index: 30;
-    opacity: 0;
-    pointer-events: auto;
-  }
-  
-  .submenu-toggle .submenu-arrow {
-    display: none;
-  }
-  
-  /* Zeige ::after Pfeil wieder an (wie vorher), aber mit pointer-events: none */
-  .nav-item.has-submenu > a::after {
-    display: inline-block !important;
-    pointer-events: none !important;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .nav-item.has-submenu.active > a::after {
-    transform: rotate(180deg);
-  }
+  /* Submenü-Styles wie in index.html - ::after Pfeil wird automatisch angezeigt */
   
   /* Padding oben für Content, damit Header nicht überlappt */
   body {
@@ -2214,11 +2169,10 @@ $(document).ready(function() {
   }
 
   // Dropdown-Pfeil für Submenü - Mobile und Desktop
-  // Separater Toggle-Button für den Pfeil - mit höchster Priorität
-  $(document).on('click', '.submenu-toggle', function(e) {
+  // Genau wie in index.html
+  $(document).on('click', '.nav-item.has-submenu > a', function(e) {
     e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
+    e.stopPropagation(); // Verhindere Event-Bubbling zum Menü-Container
     var $navItem = $(this).parent('.nav-item.has-submenu');
     $navItem.toggleClass('active');
     
@@ -2226,32 +2180,6 @@ $(document).ready(function() {
     void $navItem[0].offsetHeight;
     
     return false;
-  });
-  
-  // Link "Leistungsportfolio" navigiert direkt
-  // WICHTIG: Prüfe ob Klick im rechten Bereich (Pfeil-Bereich) war
-  $(document).on('click', '.nav-item.has-submenu > a', function(e) {
-    var $link = $(this);
-    var linkWidth = $link.outerWidth();
-    var clickX = e.pageX - $link.offset().left;
-    var linkTextWidth = linkWidth - 30; // Letzte 30px sind für den Pfeil
-    
-    // Wenn Klick im rechten Bereich (Pfeil-Bereich), dann nichts tun (Button-Handler übernimmt)
-    if (clickX > linkTextWidth) {
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-    
-    // Sonst: Klick auf Text = Navigation
-    // Auf Desktop: Menü schließen
-    if ($(window).width() > 991) {
-      var href = $link.attr('href');
-      if (href && href !== '#' && !href.match(/^#/)) {
-        closeMenu();
-      }
-    }
-    // Auf Mobile: Link navigiert direkt, Submenü-Toggle wird durch separaten Button behandelt
   });
 
   // Untermenü öffnet sich beim Hover, Link führt direkt zur Seite
@@ -2266,12 +2194,12 @@ $(document).ready(function() {
     var isSubmenuLink = $link.closest('.nav-submenu').length > 0;
     var isSubmenuToggle = $link.closest('.nav-item.has-submenu > a').length > 0;
     
-    // Wenn es ein Submenü-Link ist (z.B. "Bauantrag"), schließe Menü und navigiere
-    if (isSubmenuLink) {
-      // Für Anchor-Links auf derselben Seite: Schließe Menü UND scrollen zur Section
+    // Wenn es ein normaler Link ist (nicht Submenü-Toggle oder Submenü-Link)
+    if (!isSubmenuLink && !isSubmenuToggle) {
+      
       if (href && (href.indexOf('#') === 0 || href.indexOf('projects.html#') !== -1 || href.indexOf('index.html#') !== -1)) {
-        e.preventDefault();
-        closeMenu();
+        e.preventDefault(); // Verhindere Standard-Verhalten
+        closeMenu(); // Schließe Menü zuerst
         
         // Extrahiere Hash aus href (kann "#tragwerksplanung" oder "projects.html#tragwerksplanung" sein)
         var hash = href.indexOf('#') !== -1 ? href.substring(href.indexOf('#')) : href;
@@ -2293,30 +2221,16 @@ $(document).ready(function() {
         closeMenu();
       }
     }
-    // Wenn es der Hauptlink eines Submenü-Items ist (z.B. "Leistungsportfolio")
-    // Wird bereits durch den Toggle-Handler behandelt - hier nichts tun
-    else if (isSubmenuToggle) {
-      // Auf Desktop: Link führt direkt zur Seite, schließe Menü
-      if ($(window).width() > 991) {
-        if (href && href !== '#' && !href.match(/^#/)) {
-          closeMenu();
-        }
-      }
-      // Auf Mobile: Wird durch Toggle-Handler behandelt
-    }
-    // Wenn es ein normaler Link ist (nicht Submenü-Toggle oder Submenü-Link)
-    else {
-      // Für Anchor-Links auf derselben Seite: Schließe Menü UND scrollen zur Section
+    // Submenü-Links (z.B. "Bauantrag") schließen auch das Menü
+    else if (isSubmenuLink) {
       if (href && (href.indexOf('#') === 0 || href.indexOf('projects.html#') !== -1 || href.indexOf('index.html#') !== -1)) {
         e.preventDefault();
         closeMenu();
         
-        // Extrahiere Hash aus href
         var hash = href.indexOf('#') !== -1 ? href.substring(href.indexOf('#')) : href;
         var target = $(hash);
         
         if (target.length) {
-          // Warte kurz, damit Menü geschlossen ist, dann scrollen
           setTimeout(function() {
             var offset = ($(window).width() <= 991) ? 100 : 120;
             $('html, body').animate({
@@ -2327,7 +2241,6 @@ $(document).ready(function() {
         
         return false;
       } else {
-        // Für Links zu anderen Seiten: Schließe Menü SOFORT
         closeMenu();
       }
     }

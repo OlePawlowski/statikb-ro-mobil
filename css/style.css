@@ -1422,44 +1422,15 @@ label.error{
 
 /* Desktop: Hover-Effekte für Submenü */
 @media (min-width: 992px) {
-  /* Separater Submenü-Toggle-Button auf Desktop - unsichtbar, aber klickbar über dem ::after */
-  .nav-item.has-submenu {
-    position: relative;
-  }
-  
-  .nav-item.has-submenu > a {
-    position: relative;
-    display: inline-block;
-    padding-right: 30px; /* Platz für Button */
-  }
-  
-  .submenu-toggle {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    z-index: 30;
-    opacity: 0;
-    pointer-events: auto;
-  }
-  
-  .submenu-toggle .submenu-arrow {
-    display: none;
-  }
-  
-  /* Zeige ::after Pfeil wieder an (wie vorher), aber mit pointer-events: none */
+  /* Dropdown-Pfeil für Desktop-Menü Items mit Submenü */
   .nav-item.has-submenu > a::after {
-    display: inline-block !important;
-    pointer-events: none !important;
-    position: relative;
-    z-index: 1;
+    content: '▼';
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 0.7em;
+    color: #ffb344;
+    transition: transform 0.3s ease;
+    vertical-align: middle;
   }
   
   .nav-item.has-submenu:hover > a::after,
