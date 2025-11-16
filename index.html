@@ -1016,12 +1016,12 @@
     background: var(--background-card, #323232);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    transition: none !important;
   }
   
   .service-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
   }
   
   .service-item img {
@@ -1082,35 +1082,6 @@
   .grid-3 {
     grid-template-columns: 1fr !important;
     gap: 1.5rem;
-  }
-  
-  /* Animationen auf Mobile deaktivieren für flüssiges Scrollen */
-  .projects.section,
-  .services-section {
-    will-change: auto !important;
-  }
-  
-  .projects.section *,
-  .services-section * {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-    will-change: auto !important;
-  }
-  
-  .projects.section .slide-in-left,
-  .projects.section .slide-in-right,
-  .services-section .slide-in-left,
-  .services-section .slide-in-right,
-  .projects.section .wow,
-  .services-section .wow,
-  .projects.section .scroll-animate,
-  .services-section .scroll-animate {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    will-change: auto !important;
   }
 }
 
