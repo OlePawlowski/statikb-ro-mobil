@@ -133,6 +133,8 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.05);
+  min-height: auto;
+  height: auto;
 }
 
 .service-card-enhanced::before {
@@ -187,12 +189,28 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   margin-bottom: 1rem;
   color: var(--text-white);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .service-description-enhanced {
   color: var(--text-light);
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  font-size: 1em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 991px) {
+  .service-title-enhanced {
+    font-size: 1.2rem !important;
+  }
+  
+  .service-description-enhanced {
+    font-size: 0.85rem !important;
+  }
 }
 
 .service-link-enhanced {
@@ -1075,9 +1093,8 @@ h1, h2, h3, h4, h5, h6 {
   /* === 5. SECTIONS & CONTAINERS === */
   
   .section {
-    margin-top: 3rem !important;
     margin-bottom: 3rem !important;
-    padding: 2rem 1rem;
+    padding: 2rem 0.5rem;
   }
   
   .section-header {
@@ -1089,8 +1106,8 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   
   /* === 6. ABOUT SECTION === */
@@ -1375,7 +1392,7 @@ h1, h2, h3, h4, h5, h6 {
   
   .section-header-enhanced {
     margin-bottom: 2rem;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
   
   .section-title-enhanced {

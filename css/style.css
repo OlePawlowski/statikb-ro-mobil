@@ -586,7 +586,6 @@ label.error{
 
 .section{
   position: relative;
-  margin-top: 120px;
   margin-bottom: 0;
   padding: 0 20px;
 }
@@ -615,6 +614,9 @@ label.error{
   font-family: 'neueMachina', 'Neue Machina', sans-serif;
   font-weight: 400;
   font-size: 40px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
   letter-spacing: 0;
   text-transform: none;
   line-height: 1.3;
@@ -1096,9 +1098,8 @@ label.error{
   
   /* Section Abstände auf Mobile gleichmäßig 120px */
   .section {
-    margin-top: 120px !important;
     margin-bottom: 0 !important;
-    padding: 0 15px !important;
+    padding: 0 8px !important;
   }
   
   /* Erste Section sollte kein Top-Margin haben */
@@ -2553,14 +2554,16 @@ label.error{
   }
 }
 
-/* Mobile: .hello auf 368px setzen */
+/* Mobile: .hello auf auto setzen, damit Text vollständig sichtbar ist */
 @media (max-width: 991px) {
   .hello {
-    height: 368px;
+    height: auto;
+    min-height: auto;
   }
   
   .service-in-projects {
-    height: 368px;
+    height: auto;
+    min-height: auto;
   }
 }
 
