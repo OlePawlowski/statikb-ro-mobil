@@ -1001,6 +1001,21 @@ label.error{
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       -webkit-overflow-scrolling: touch !important;
+      /* Optimierung für flüssigeres Scrollen */
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Scroll-Performance für Sections optimieren */
+    .projects.section,
+    .services-section {
+      contain: layout style paint;
+      will-change: auto;
+    }
+    
+    .projects.section *,
+    .services-section * {
+      will-change: auto;
     }
   
   body.menu-open {

@@ -1083,6 +1083,36 @@
     grid-template-columns: 1fr !important;
     gap: 1.5rem;
   }
+  
+  /* Scroll-Performance Optimierungen für services-section und projects-section */
+  .projects.section,
+  .services-section {
+    will-change: auto !important;
+    contain: layout style paint !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .projects.section *,
+  .services-section * {
+    will-change: auto !important;
+    transition: none !important;
+  }
+  
+  .projects.section .service-item,
+  .services-section .service-item {
+    will-change: auto !important;
+    contain: layout style !important;
+  }
+  
+  /* Deaktiviere alle hover-Effekte auf Mobile */
+  .projects.section *:hover,
+  .services-section *:hover {
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1369,15 +1399,17 @@ $(document).ready(function() {
     $('.scroll-animate').addClass('animate');
   }
 
-  // Enhanced Service Card Animations
-  $('.service-card-enhanced').hover(
-    function() {
-      $(this).find('.service-icon-enhanced').addClass('pulse');
-    },
-    function() {
-      $(this).find('.service-icon-enhanced').removeClass('pulse');
-    }
-  );
+  // Enhanced Service Card Animations - NUR auf Desktop
+  if ($(window).width() > 991) {
+    $('.service-card-enhanced').hover(
+      function() {
+        $(this).find('.service-icon-enhanced').addClass('pulse');
+      },
+      function() {
+        $(this).find('.service-icon-enhanced').removeClass('pulse');
+      }
+    );
+  }
 });
 </script>
 
