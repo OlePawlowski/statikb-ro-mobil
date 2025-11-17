@@ -160,9 +160,17 @@
         if (target.length) {
             // Offset wegen Header (größer, damit Header nicht überlappt)
             var offset = ($(window).width() <= 991) ? 100 : 120;
-            $('html,body').animate({
+            // Auf Mobile: Sofortiges Scrollen ohne Animation für flüssigeres Verhalten
+            if ($(window).width() <= 991) {
+              window.scrollTo({
+                top: target.offset().top - offset,
+                behavior: 'auto'
+              });
+            } else {
+              $('html,body').animate({
                 scrollTop: target.offset().top - offset
-            }, 1000);
+              }, 1000);
+            }
             return false;
         }
     });

@@ -987,7 +987,7 @@ label.error{
 /* Verhindere automatisches Scrollen nach oben auf Mobile */
   @media (max-width: 991px) {
     html {
-      scroll-behavior: smooth !important; /* Smooth scrolling auch auf Mobile für bessere UX */
+      scroll-behavior: auto !important; /* Auto für flüssigeres Scrollen auf Mobile */
       -webkit-overflow-scrolling: touch !important;
       /* GPU-Beschleunigung für flüssigeres Scrollen */
       -webkit-transform: translateZ(0);
@@ -1003,7 +1003,21 @@ label.error{
       -webkit-overflow-scrolling: touch !important;
       /* Optimierung für flüssigeres Scrollen */
       overscroll-behavior: contain;
-      -webkit-overflow-scrolling: touch;
+      /* Deaktiviere alle Transitions während Scrollen */
+      transition: none !important;
+    }
+    
+    /* Deaktiviere alle Transitions auf Mobile für flüssigeres Scrollen */
+    * {
+      transition: none !important;
+    }
+    
+    /* Ausnahmen für wichtige Interaktionen */
+    .faq-question-enhanced,
+    .btn,
+    .btn-enhanced,
+    .navbar-toggle {
+      transition: opacity 0.2s ease !important;
     }
     
     /* Scroll-Performance für Sections optimieren */
