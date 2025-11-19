@@ -167,9 +167,9 @@
                 behavior: 'auto'
               });
             } else {
-              $('html,body').animate({
+            $('html,body').animate({
                 scrollTop: target.offset().top - offset
-              }, 1000);
+            }, 1000);
             }
             return false;
         }

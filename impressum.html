@@ -55,7 +55,7 @@
     <header id="top" class="header-home">
         <div class="brand-panel">
           <a href="index.html" class="brand">
-            <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+            <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
           </a>
           <div class="brand-name">Statikbüro Berlin</div>
           <div class="slide-number">
@@ -67,7 +67,6 @@
         <div class="vertical-panel"></div>
         <div class="vertical-panel-content">
           <div class="vertical-panel-info">
-              <div class="vertical-panel-title">Statikbüro Berlin</div>
               <div class="line"></div>
            </div>
           <ul class="social-list">
@@ -116,7 +115,7 @@
         <!-- Logo oben rechts -->
         <div class="nav-logo-top-right">
           <a href="index.html" class="brand-des">
-            <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+            <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
           </a>
         </div>
         
@@ -124,7 +123,7 @@
         <div class="nav-menu-center">
           <ul class="nav-menu-vertical">
             <li class="nav-item-large">
-              <a href="index.html">3D Erlebniswelt</a>
+              <a href="index.html">Interaktive Karte</a>
             </li>
             <li class="nav-item">
               <a href="index.html#about" class="js-target-scroll">Über uns</a>
@@ -181,7 +180,7 @@
 
       <nav class="navbar-mobile">
         <a href="index.html" class="brand">
-          <img src="img/colored-logo.png" alt="Statikbüro24">
+          <img class="brand-logo" src="img/colored-logo.png" alt="Statikbüro24">
         </a>
         
         <div class="navbar-mobile-right">
@@ -272,7 +271,7 @@
           <div class="row-base row">
             <div class="col-base text-left-md col-md-4">
               <a href="index.html" class="brand">
-                <img style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+                <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
               </a>
             </div>
             <div class="text-center-md col-base col-md-4">
@@ -315,16 +314,17 @@
 
 <!-- SCRIPTS -->
 
+<script src="js/perf-helpers.js" defer></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/smoothscroll.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/jquery.magnific-popup.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/interface.js"></script>
-<script src="js/scroll-animations.js"></script>
+<script src="js/smoothscroll.js" defer></script>
+<script src="js/jquery.validate.min.js" defer></script>
+<script src="js/wow.min.js" defer></script>
+<script src="js/jquery.stellar.min.js" defer></script>
+<script src="js/jquery.magnific-popup.js" defer></script>
+<script src="js/owl.carousel.min.js" defer></script>
+<script src="js/interface.js" defer></script>
+<script src="js/scroll-animations.js" defer></script>
 
 <style>
 body, html {
@@ -377,31 +377,10 @@ body, html {
 <script>
 $(document).ready(function() {
   // Hamburger Menu Toggle
-  var scrollPosition = 0;
-  
   $('.hamburger-menu-toggle').on('click', function() {
-    if ($(window).width() <= 991) {
-      if ($(this).hasClass('active')) {
-        // Menü wird geschlossen - wiederherstellen der Scroll-Position
-        $('body').removeClass('menu-open');
-        setTimeout(function() {
-          $(window).scrollTop(scrollPosition);
-          $('body').css({ top: '', position: '' });
-        }, 10);
-      } else {
-        // Menü wird geöffnet - speichere Scroll-Position
-        scrollPosition = $(window).scrollTop();
-        $('body').css({ top: -scrollPosition + 'px', position: 'fixed' });
-        $('body').addClass('menu-open');
-      }
-    }
-    
     $(this).toggleClass('active');
     $('#desktop-nav-menu').toggleClass('active');
-    
-    if ($(window).width() > 991) {
-      $('body').toggleClass('menu-open');
-    }
+    $('body, html').toggleClass('menu-open');
   });
 
   // Dropdown-Pfeil für Submenü - Mobile und Desktop
@@ -417,28 +396,122 @@ $(document).ready(function() {
     return false;
   });
 
-  // Menü schließen beim Klick auf Link
-  $('#desktop-nav-menu').on('click', 'a', function(e) {
-    // Prüfe ob es ein Submenü-Link ist oder der Hauptlink eines Submenü-Items
+  // Funktion zum Schließen des Menüs
+  function closeMenu() {
+    $('.hamburger-menu-toggle').removeClass('active');
+    $('#desktop-nav-menu').removeClass('active');
+    $('body, html').removeClass('menu-open');
+  }
+  
+  // Menü schließen bei ALLEN Links im Menü - mit höchster Priorität
+  // Wichtig: Dies muss für Anchor-Links (#about, projects.html#tragwerksplanung) funktionieren, damit das Menü schließt
+  // bevor das Scrollen startet, genau wie bei Links zu anderen Seiten
+  $(document).on('click', '#desktop-nav-menu a', function(e) {
     var $link = $(this);
+    var href = $link.attr('href');
     var isSubmenuLink = $link.closest('.nav-submenu').length > 0;
     var isSubmenuToggle = $link.closest('.nav-item.has-submenu > a').length > 0;
     
     // Wenn es ein normaler Link ist (nicht Submenü-Toggle oder Submenü-Link)
     if (!isSubmenuLink && !isSubmenuToggle) {
-      // Schließe Menü sofort
-      $('.hamburger-menu-toggle').removeClass('active');
-      $('#desktop-nav-menu').removeClass('active');
-      
-      if ($(window).width() <= 991) {
-        // Wiederherstellen der Scroll-Position auf Mobile
-        $('body').removeClass('menu-open');
-        setTimeout(function() {
-          $(window).scrollTop(scrollPosition);
-          $('body').css({ top: '', position: '' });
-        }, 10);
+      // Für Anchor-Links auf derselben Seite oder zu anderen Seiten: Schließe Menü UND scrollen zur Section
+      if (href && (href.indexOf('#') === 0 || href.indexOf('index.html#') !== -1 || href.indexOf('projects.html#') !== -1)) {
+        e.preventDefault(); // Verhindere Standard-Verhalten
+        closeMenu(); // Schließe Menü zuerst
+        
+        // Prüfe ob Link zu einer anderen Seite führt
+        var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        var targetPage = null;
+        
+        if (href.indexOf('projects.html#') !== -1) {
+          targetPage = 'projects.html';
+        } else if (href.indexOf('index.html#') !== -1) {
+          targetPage = 'index.html';
+        }
+        
+        // Wenn Link zu einer anderen Seite führt, navigiere dorthin
+        if (targetPage && targetPage !== currentPage) {
+          setTimeout(function() {
+            window.location.href = href;
+          }, 100);
+          return false;
+        }
+        
+        // Extrahiere Hash aus href (kann "#about", "index.html#about" oder "projects.html#tragwerksplanung" sein)
+        var hash = href.indexOf('#') !== -1 ? href.substring(href.indexOf('#')) : href;
+        var target = $(hash);
+        
+        if (target.length) {
+          // Warte kurz, damit Menü geschlossen ist, dann scrollen
+          setTimeout(function() {
+            var offset = ($(window).width() <= 991) ? 100 : 120;
+            // Auf Mobile: Sofortiges Scrollen ohne Animation für flüssigeres Verhalten
+            if ($(window).width() <= 991) {
+              window.scrollTo({
+                top: target.offset().top - offset,
+                behavior: 'auto'
+              });
+            } else {
+              $('html, body').animate({
+                scrollTop: target.offset().top - offset
+              }, 1000);
+            }
+          }, 100);
+        }
+        
+        return false;
       } else {
-        $('body').removeClass('menu-open');
+        // Für Links zu anderen Seiten: Schließe Menü SOFORT
+        closeMenu();
+      }
+    }
+    // Submenü-Links (z.B. "Tragwerksplanung", "Bauantrag") schließen auch das Menü
+    else if (isSubmenuLink) {
+      if (href && (href.indexOf('#') === 0 || href.indexOf('projects.html#') !== -1 || href.indexOf('index.html#') !== -1)) {
+        e.preventDefault();
+        closeMenu();
+        
+        // Prüfe ob Link zu einer anderen Seite führt
+        var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        var targetPage = null;
+        
+        if (href.indexOf('projects.html#') !== -1) {
+          targetPage = 'projects.html';
+        } else if (href.indexOf('index.html#') !== -1) {
+          targetPage = 'index.html';
+        }
+        
+        // Wenn Link zu einer anderen Seite führt, navigiere dorthin
+        if (targetPage && targetPage !== currentPage) {
+          setTimeout(function() {
+            window.location.href = href;
+          }, 100);
+          return false;
+        }
+        
+        var hash = href.indexOf('#') !== -1 ? href.substring(href.indexOf('#')) : href;
+        var target = $(hash);
+        
+        if (target.length) {
+          setTimeout(function() {
+            var offset = ($(window).width() <= 991) ? 100 : 120;
+            // Auf Mobile: Sofortiges Scrollen ohne Animation für flüssigeres Verhalten
+            if ($(window).width() <= 991) {
+              window.scrollTo({
+                top: target.offset().top - offset,
+                behavior: 'auto'
+              });
+            } else {
+              $('html, body').animate({
+                scrollTop: target.offset().top - offset
+              }, 1000);
+            }
+          }, 100);
+        }
+        
+        return false;
+      } else {
+        closeMenu();
       }
     }
   });
@@ -448,7 +521,7 @@ $(document).ready(function() {
     if (e.key === 'Escape' && $('#desktop-nav-menu').hasClass('active')) {
       $('.hamburger-menu-toggle').removeClass('active');
       $('#desktop-nav-menu').removeClass('active');
-      $('body').removeClass('menu-open');
+      $('body, html').removeClass('menu-open');
     }
   });
 });

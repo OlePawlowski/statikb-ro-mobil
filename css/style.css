@@ -546,6 +546,15 @@ label.error{
   overflow: hidden;
 }
 
+/* Stelle sicher, dass Seiteninhalte nicht hinter dem Header-Panel liegen */
+.layout .content,
+.layout .content .section-header,
+.layout .content .section-title,
+.layout .content .projekte-hero-title{
+  position: relative;
+  z-index: 5;
+}
+
 .text-primary{
   color:#ffb344;
 }
@@ -672,9 +681,9 @@ label.error{
   z-index: 4;
   left: 0;
   top:0;
-  width: 39.47vmin;
-  height: 40.7vmin;
-  padding: 4.8vmin 2em 4.8vmin;
+  width: 32vmin;
+  height: 33vmin;
+  padding: 3.5vmin 1.5em 3.5vmin;
   background-color: #2b2b2b;
   text-align: center;
   -webkit-transition: all 0.3s;
@@ -704,7 +713,7 @@ label.error{
   right:-0.38em;
   font-family: 'Trasandina', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 700;
-  font-size: 8.75em;
+  font-size: 6.75em;
   line-height: 1;
   opacity: 0.04;
   color: #fff;
@@ -794,30 +803,6 @@ label.error{
   width: 1px;
   margin:15px auto 0;
   background-color:#646464;
-}
-
-.vertical-panel-title{
-  font-family: 'Trasandina', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 600;
-  font-size: 10px;
-  white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 1em;
-  color: #fff;
-  position: relative;
-  left: -6px;
-  margin:0 auto;
-  width: 1px;
-  -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-   -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-}
-
-@media (max-height: 850px){
-  .vertical-panel-title{
-    display: none;
-  }
 }
 
 .social-list{
@@ -972,6 +957,10 @@ label.error{
   background: rgba(10, 10, 10, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  /* Safari-spezifische Optimierungen für konsistentes Rendering */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: opacity, visibility;
   opacity: 0 !important;
   visibility: hidden !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -983,60 +972,31 @@ label.error{
   pointer-events: auto !important;
 }
 
+body.menu-open,
+html.menu-open {
+  overflow: hidden !important;
+  height: 100%;
+}
+
+body.menu-open .header-drone-container,
+html.menu-open .header-drone-container {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 /* Body lock when menu is open */
 /* Verhindere automatisches Scrollen nach oben auf Mobile */
   @media (max-width: 991px) {
     html {
-      scroll-behavior: auto !important; /* Auto für flüssigeres Scrollen auf Mobile */
+      scroll-behavior: smooth !important;
       -webkit-overflow-scrolling: touch !important;
-      /* GPU-Beschleunigung für flüssigeres Scrollen */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
     }
     
     body {
-      /* GPU-Beschleunigung */
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
       -webkit-overflow-scrolling: touch !important;
-      /* Optimierung für flüssigeres Scrollen */
       overscroll-behavior: contain;
-      /* Deaktiviere alle Transitions während Scrollen */
-      transition: none !important;
     }
-    
-    /* Deaktiviere alle Transitions auf Mobile für flüssigeres Scrollen */
-    * {
-      transition: none !important;
-    }
-    
-    /* Ausnahmen für wichtige Interaktionen */
-    .faq-question-enhanced,
-    .btn,
-    .btn-enhanced,
-    .navbar-toggle {
-      transition: opacity 0.2s ease !important;
-    }
-    
-    /* Scroll-Performance für Sections optimieren */
-    .projects.section,
-    .services-section {
-      contain: layout style paint;
-      will-change: auto;
-    }
-    
-    .projects.section *,
-    .services-section * {
-      will-change: auto;
-    }
-  
-  body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-  }
 }
 
 @media (max-width: 991px) {
@@ -1170,11 +1130,13 @@ label.error{
   }
   
   .nav-item-large a {
-    font-size: 22px !important;
+    font-size: 24px !important;
+    color: #ffffff !important;
   }
   
   .nav-item a {
-    font-size: 18px !important;
+    font-size: 20px !important;
+    color: #ffffff !important;
   }
   
   .nav-item-large a,
@@ -1341,6 +1303,11 @@ label.error{
   .faq-list {
     padding: 0 !important;
   }
+  
+  /* Mobile: Schriftgröße für Überschriften */
+  h2, .h2, .section-title {
+    font-size: 1.4rem !important;
+  }
 }
 
 /* Logo oben rechts - wird im aufgeklappten Zustand ausgeblendet */
@@ -1379,6 +1346,7 @@ label.error{
   top: 50%;
   transform: translate(-50%, -50%);
   pointer-events: auto;
+  text-align: left;
 }
 
 .nav-menu-vertical {
@@ -1387,8 +1355,8 @@ label.error{
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  align-items: center;
+  gap: 42px;
+  align-items: flex-start;
 }
 
 .nav-item,
@@ -1399,36 +1367,36 @@ label.error{
 .nav-item a,
 .nav-item-large a {
   font-family: 'neueMachina', 'Neue Machina', monospace;
-  font-size: 1.8em;
+  font-size: 2.6em;
   font-weight: 400;
   color: transparent;
-  -webkit-text-stroke: 1px #ffb344; /* Koralle Outline */
+  -webkit-text-stroke: 1px rgba(255, 179, 68, 0.45);
   text-decoration: none;
   display: block;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
   position: relative;
 }
 
 .nav-item-large a {
-  font-size: 2.4em;
+  font-size: 3.2em;
 }
 
 /* Hover-Effekt: Menüpunkte füllen sich mit Farbe */
 .nav-item a:hover,
 .nav-item-large a:hover {
   -webkit-text-stroke: 1px #ffb344;
-  color: #ffb344; /* Füllung mit Koralle */
-  text-shadow: 0 0 20px rgba(255, 179, 68, 0.4);
+  color: rgba(255, 179, 68, 0.95);
+  text-shadow: 0 8px 25px rgba(255, 179, 68, 0.28);
   transform: scale(1.05);
 }
 
 /* Aktives Item in Koralle */
 .nav-item.active a {
-  color: #ffb344; /* solides Koralle */
+  color: rgba(255, 179, 68, 0.95); /* solides Koralle */
   -webkit-text-stroke: 0;
   font-weight: 400;
-  text-shadow: 0 0 20px rgba(255, 179, 68, 0.5);
+  text-shadow: 0 8px 25px rgba(255, 179, 68, 0.28);
 }
 
 /* Untermenü für Leistungsportfolio */
@@ -1439,11 +1407,11 @@ label.error{
 .nav-submenu {
   list-style: none;
   padding: 0;
-  margin: 16px 0 0 0;
+  margin: 24px 0 0 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  align-items: center;
+  gap: 10px;
+  align-items: flex-start;
   opacity: 0;
   max-height: 0;
   overflow: hidden;
@@ -1494,17 +1462,17 @@ label.error{
 }
 
 .nav-submenu li a {
-  font-size: 1.2em;
-  -webkit-text-stroke: 1px rgba(255, 179, 68, 0.6);
+  font-size: 1.15em;
+  -webkit-text-stroke: 1px rgba(255, 179, 68, 0.35);
   color: transparent;
-  transition: all 0.3s ease;
+  letter-spacing: 0.2em;
+  transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
 }
 
 .nav-submenu li a:hover {
   -webkit-text-stroke: 1px #ffb344;
-  color: #ffb344; /* Füllung mit Koralle */
-  text-shadow: 0 0 15px rgba(255, 179, 68, 0.4);
-  transform: scale(1.03);
+  color: rgba(255, 179, 68, 0.95); /* Füllung mit Koralle */
+  transform: none;
 }
 
 /* Vertikale Texte links */
@@ -1965,24 +1933,8 @@ label.error{
     height: auto !important;
     max-height: none !important;
   }
-}
 
-/* Desktop: Iframe Styles */
-.main iframe,
-.main .frame {
-  width: 100%;
-  height: 100vh;
-  min-height: 700px;
-  border: none;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-
-.main-inner{
+  .main-inner{
   position: relative;
   z-index: 1;
   min-height: 0;
