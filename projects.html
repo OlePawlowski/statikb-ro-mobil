@@ -23,6 +23,47 @@
 <link href="css/neuemachina-font.css" rel="stylesheet" media="screen">
 <link href="css/futuristic-design.css" rel="stylesheet" media="screen">
 <link href="css/performance-animations.css" rel="stylesheet" media="screen">
+<script>
+// Verhindere direktes Springen zu Hash beim Laden der Seite
+// und unterstütze zwischengespeicherte Hash-Navigation (z. B. aus anderen Seiten)
+(function() {
+  var pendingHashFromStorage = null;
+  try {
+    var storedTargetPage = sessionStorage.getItem('pendingHashTargetPage');
+    if (!window.location.hash && storedTargetPage && storedTargetPage === 'projects.html') {
+      pendingHashFromStorage = sessionStorage.getItem('pendingHashNavigation');
+      sessionStorage.removeItem('pendingHashNavigation');
+      sessionStorage.removeItem('pendingHashTargetPage');
+    }
+  } catch (err) {
+    pendingHashFromStorage = null;
+  }
+  
+  if (window.location.hash && window.location.hash !== '#top' && window.location.hash !== '') {
+    // Speichere Hash
+    var hash = window.location.hash;
+    // Entferne Hash komplett aus URL, damit Browser nicht springt
+    if (history.replaceState) {
+      history.replaceState(null, null, window.location.pathname + window.location.search);
+    } else {
+      window.location.hash = '';
+    }
+    // Setze Scroll-Position auf oben - nur einmal, nicht aggressiv
+    window.scrollTo(0, 0);
+    if (document.documentElement) {
+      document.documentElement.scrollTop = 0;
+    }
+    if (document.body) {
+      document.body.scrollTop = 0;
+    }
+    
+    // Speichere Hash für späteres Scrollen
+    window._pendingHash = hash;
+  } else if (pendingHashFromStorage) {
+    window._pendingHash = pendingHashFromStorage;
+  }
+})();
+</script>
 </head>
 <body>
   
@@ -57,7 +98,11 @@
     <header id="top" class="header-home">
         <div class="brand-panel">
           <a href="index.html" class="brand">
+<<<<<<< HEAD
             <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+=======
+            <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo"
+>>>>>>> menu-legacy-base
           </a>
           <div class="brand-name">Statikbüro Berlin</div>
           <div class="slide-number">
@@ -117,7 +162,11 @@
         <!-- Logo oben rechts -->
         <div class="nav-logo-top-right">
           <a href="index.html" class="brand-des">
+<<<<<<< HEAD
             <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+=======
+            <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo"
+>>>>>>> menu-legacy-base
           </a>
         </div>
         
@@ -181,7 +230,11 @@
       <!-- Navigation Mobile -->
       <nav class="navbar-mobile">
         <a href="index.html" class="brand">
+<<<<<<< HEAD
           <img class="brand-logo" src="img/colored-logo.png" alt="Statikbüro24">
+=======
+          <img class="brand-logo" src="img/colored-logo.png" alt="Statikbüro24"
+>>>>>>> menu-legacy-base
         </a>
         
         <div class="navbar-mobile-right">
@@ -1407,7 +1460,11 @@
           <div class="row-base row">
             <div class="col-base text-left-md col-md-4">
               <a href="index.html" class="brand">
+<<<<<<< HEAD
                 <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+=======
+                <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo"
+>>>>>>> menu-legacy-base
               </a>
             </div>
             <div class="text-center-md col-base col-md-4">
@@ -2276,9 +2333,29 @@ $(document).ready(function() {
         
         // Wenn Link zu einer anderen Seite führt, navigiere dorthin
         if (targetPage && targetPage !== currentPage) {
+<<<<<<< HEAD
           setTimeout(function() {
             window.location.href = href;
           }, 100);
+=======
+          var hasHash = href.indexOf('#') !== -1;
+          if (hasHash && targetPage === 'projects.html') {
+            var pendingHashValue = href.substring(href.indexOf('#'));
+            try {
+              sessionStorage.setItem('pendingHashNavigation', pendingHashValue);
+              sessionStorage.setItem('pendingHashTargetPage', targetPage);
+            } catch (error) {
+              // SessionStorage könnte deaktiviert sein – weiter ohne gespeicherten Hash
+            }
+            setTimeout(function() {
+              window.location.href = targetPage;
+            }, 100);
+          } else {
+            setTimeout(function() {
+              window.location.href = href;
+            }, 100);
+          }
+>>>>>>> menu-legacy-base
           return false;
         }
         

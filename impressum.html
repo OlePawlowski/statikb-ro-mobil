@@ -55,7 +55,11 @@
     <header id="top" class="header-home">
         <div class="brand-panel">
           <a href="index.html" class="brand">
+<<<<<<< HEAD
             <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+=======
+            <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo"
+>>>>>>> menu-legacy-base
           </a>
           <div class="brand-name">Statikbüro Berlin</div>
           <div class="slide-number">
@@ -115,7 +119,11 @@
         <!-- Logo oben rechts -->
         <div class="nav-logo-top-right">
           <a href="index.html" class="brand-des">
+<<<<<<< HEAD
             <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+=======
+            <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo"
+>>>>>>> menu-legacy-base
           </a>
         </div>
         
@@ -180,7 +188,11 @@
 
       <nav class="navbar-mobile">
         <a href="index.html" class="brand">
+<<<<<<< HEAD
           <img class="brand-logo" src="img/colored-logo.png" alt="Statikbüro24">
+=======
+          <img class="brand-logo" src="img/colored-logo.png" alt="Statikbüro24"
+>>>>>>> menu-legacy-base
         </a>
         
         <div class="navbar-mobile-right">
@@ -271,7 +283,11 @@
           <div class="row-base row">
             <div class="col-base text-left-md col-md-4">
               <a href="index.html" class="brand">
+<<<<<<< HEAD
                 <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo">
+=======
+                <img class="brand-logo" style="width: 120px;" src="img/colored-logo.png" alt="Statikbüro24 Logo"
+>>>>>>> menu-legacy-base
               </a>
             </div>
             <div class="text-center-md col-base col-md-4">
@@ -431,9 +447,29 @@ $(document).ready(function() {
         
         // Wenn Link zu einer anderen Seite führt, navigiere dorthin
         if (targetPage && targetPage !== currentPage) {
+<<<<<<< HEAD
           setTimeout(function() {
             window.location.href = href;
           }, 100);
+=======
+          var hasHash = href.indexOf('#') !== -1;
+          if (hasHash && targetPage === 'projects.html') {
+            var pendingHashValue = href.substring(href.indexOf('#'));
+            try {
+              sessionStorage.setItem('pendingHashNavigation', pendingHashValue);
+              sessionStorage.setItem('pendingHashTargetPage', targetPage);
+            } catch (error) {
+              // SessionStorage könnte deaktiviert sein – weiter ohne gespeicherten Hash
+            }
+            setTimeout(function() {
+              window.location.href = targetPage;
+            }, 100);
+          } else {
+            setTimeout(function() {
+              window.location.href = href;
+            }, 100);
+          }
+>>>>>>> menu-legacy-base
           return false;
         }
         

@@ -1,0 +1,384 @@
+/* ============================================
+   Performance-Optimierungen & Slide-in-Animationen
+   ============================================ */
+
+/* Performance-Optimierungen */
+* {
+  /* GPU-Beschleunigung für bessere Performance */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lazy Loading für Bilder - wird durch HTML-Attribut unterstützt */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
+
+/* Will-change für animierte Elemente - nur wenn nötig */
+.animate-on-scroll,
+.slide-in-left,
+.slide-in-right,
+.slide-in-up,
+.fade-in {
+  will-change: transform, opacity;
+}
+
+/* Nach Animation: will-change entfernen für bessere Performance */
+.animate-on-scroll.animated,
+.slide-in-left.animated,
+.slide-in-right.animated,
+.slide-in-up.animated,
+.fade-in.animated {
+  will-change: auto;
+}
+
+/* ============================================
+   Slide-in Animationen von links
+   ============================================ */
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Basis-Klassen für Slide-in-Animationen */
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animierte Zustände */
+.slide-in-left.animated,
+.slide-in-right.animated,
+.slide-in-up.animated {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+.fade-in.animated {
+  opacity: 1;
+}
+
+/* Verzögerungen für gestaffelte Animationen */
+.slide-in-left.delay-1 { transition-delay: 0.1s; }
+.slide-in-left.delay-2 { transition-delay: 0.2s; }
+.slide-in-left.delay-3 { transition-delay: 0.3s; }
+.slide-in-left.delay-4 { transition-delay: 0.4s; }
+.slide-in-left.delay-5 { transition-delay: 0.5s; }
+
+.slide-in-right.delay-1 { transition-delay: 0.1s; }
+.slide-in-right.delay-2 { transition-delay: 0.2s; }
+.slide-in-right.delay-3 { transition-delay: 0.3s; }
+.slide-in-right.delay-4 { transition-delay: 0.4s; }
+.slide-in-right.delay-5 { transition-delay: 0.5s; }
+
+.slide-in-up.delay-1 { transition-delay: 0.1s; }
+.slide-in-up.delay-2 { transition-delay: 0.2s; }
+.slide-in-up.delay-3 { transition-delay: 0.3s; }
+.slide-in-up.delay-4 { transition-delay: 0.4s; }
+.slide-in-up.delay-5 { transition-delay: 0.5s; }
+
+.fade-in.delay-1 { transition-delay: 0.1s; }
+.fade-in.delay-2 { transition-delay: 0.2s; }
+.fade-in.delay-3 { transition-delay: 0.3s; }
+.fade-in.delay-4 { transition-delay: 0.4s; }
+.fade-in.delay-5 { transition-delay: 0.5s; }
+
+/* ============================================
+   Spezifische Animationen für verschiedene Elemente
+   ============================================ */
+
+/* Service-Items */
+.service-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Projekt-Cards */
+.project {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* FAQ-Items */
+.faq-item-enhanced {
+  transition: transform 0.3s ease;
+}
+
+.faq-item-enhanced:hover {
+  transform: translateX(5px);
+}
+
+/* Buttons */
+.btn,
+.btn-enhanced,
+.alle-projekte-button {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover,
+.btn-enhanced:hover,
+.alle-projekte-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Partner/Client Logos */
+.client {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.client:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   Mobile Performance-Optimierungen
+   ============================================ */
+
+@media (max-width: 991px) {
+  /* DEAKTIVIERE ALLE ANIMATIONEN AUF MOBILE - KEINE NERVIGEN EFFEKTE */
+  .slide-in-left,
+  .slide-in-right,
+  .slide-in-up,
+  .slide-in-left.animated,
+  .slide-in-right.animated,
+  .slide-in-up.animated,
+  .fade-in,
+  .fade-in.animated,
+  .animate-on-scroll,
+  .animate-on-scroll.animated,
+  .service-item.slide-in-left,
+  .service-item.slide-in-right,
+  .service-item.slide-in-up,
+  .service-item.fade-in,
+  .scroll-animate,
+  .scroll-animate.animate,
+  /* WOW.js Animationen deaktivieren */
+  .wow,
+  .wow.animated,
+  .fadeInUp,
+  .fadeInUp.animated,
+  .fadeInDown,
+  .fadeInLeft,
+  .fadeInRight,
+  .slideInUp,
+  .slideInDown,
+  .slideInLeft,
+  .slideInRight,
+  .swing,
+  .bounceIn,
+  .zoomIn {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    visibility: visible !important;
+  }
+  
+  /* Spezifisch für services-section: Keine Animationen auf Mobile */
+  .services-section .col-service,
+  .services-section .col-service.wow,
+  .services-section .col-service.fadeInUp,
+  .services-section .col-service.slide-in-left,
+  .services-section .col-service.slide-in-right,
+  .services-section .col-service.slide-in-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    visibility: visible !important;
+  }
+  
+  /* Reduziere will-change auf Mobile */
+  .animate-on-scroll,
+  .slide-in-left,
+  .slide-in-right,
+  .slide-in-up,
+  .fade-in {
+    will-change: auto;
+  }
+  
+  /* Einfachere Animationen für Touch-Geräte */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Reduziere komplexe Transforms auf Mobile */
+  .service-item:hover,
+  .project:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   Reduced Motion Support (Accessibility)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-in-left,
+  .slide-in-right,
+  .slide-in-up,
+  .fade-in {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .slide-in-left.animated,
+  .slide-in-right.animated,
+  .slide-in-up.animated,
+  .fade-in.animated {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+   Performance: Containment für bessere Rendering-Performance
+   ============================================ */
+
+.section {
+  contain: layout style paint;
+}
+
+.service-item,
+.project,
+.faq-item-enhanced {
+  contain: layout style;
+}
+
+/* ============================================
+   Optimierte Scroll-Performance
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  /* GPU-Beschleunigung für flüssigeres Scrollen */
+  -webkit-overflow-scrolling: touch;
+  /* Optimierung für iOS */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+body {
+  /* GPU-Beschleunigung */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Verhindere Layout-Shifts während des Scrollens */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hauptcontainer für bessere Scroll-Performance */
+.main,
+.container,
+.section {
+  /* GPU-Beschleunigung */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Verhindere Repaints */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   Lazy Loading Optimierungen
+   ============================================ */
+
+iframe[loading="lazy"] {
+  content-visibility: auto;
+}
+
+img[loading="lazy"] {
+  content-visibility: auto;
+  background: none;
+}
+
+/* ============================================
+   Container für gestaffelte Animationen
+   ============================================ */
+
+.animate-stagger > *:nth-child(1) { transition-delay: 0.1s; }
+.animate-stagger > *:nth-child(2) { transition-delay: 0.2s; }
+.animate-stagger > *:nth-child(3) { transition-delay: 0.3s; }
+.animate-stagger > *:nth-child(4) { transition-delay: 0.4s; }
+.animate-stagger > *:nth-child(5) { transition-delay: 0.5s; }
+.animate-stagger > *:nth-child(6) { transition-delay: 0.6s; }
+.animate-stagger > *:nth-child(7) { transition-delay: 0.7s; }
+.animate-stagger > *:nth-child(8) { transition-delay: 0.8s; }
+.animate-stagger > *:nth-child(9) { transition-delay: 0.9s; }
+.animate-stagger > *:nth-child(10) { transition-delay: 1.0s; }
+
+
