@@ -167,52 +167,42 @@ body::after::after {
   box-shadow: 0 0 20px rgba(255, 179, 68, 0.6) !important;
 }
 
-/* Navigation mit Neon-Effekten - DES.de Stil mit Orange */
+/* Navigation Outline-Stil – Anlehnung an DES-Menü */
 .nav-item a,
 .nav-item-large a {
   color: transparent !important;
-  text-shadow: 
-    0 0 8px rgba(255, 179, 68, 0.3),
-    0 0 15px rgba(255, 179, 68, 0.2) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  letter-spacing: 0.05em !important;
-  filter: drop-shadow(0 0 4px rgba(255, 179, 68, 0.25)) !important;
+  -webkit-text-stroke: 1px rgba(255, 179, 68, 0.45) !important;
+  letter-spacing: 0.04em !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transition: color 0.35s ease, -webkit-text-stroke 0.35s ease, transform 0.35s ease !important;
 }
 
 .nav-item a:hover,
 .nav-item-large a:hover {
-  color: rgba(255, 179, 68, 0.3) !important;
-  text-shadow: 
-    0 0 12px rgba(255, 179, 68, 0.5),
-    0 0 20px rgba(255, 179, 68, 0.3) !important;
-  transform: scale(1.05) !important;
-  filter: drop-shadow(0 0 6px rgba(255, 179, 68, 0.4)) !important;
+  color: rgba(255, 179, 68, 0.95) !important;
+  -webkit-text-stroke: 1px #ffb344 !important;
+  text-shadow: 0 8px 25px rgba(255, 179, 68, 0.28) !important;
+  transform: scale(1.04) !important;
 }
 
-/* Aktives Item mit stärkerem Glow */
 .nav-item.active a,
 .nav-item-large.active a {
-  color: rgba(255, 179, 68, 0.4) !important;
-  text-shadow: 
-    0 0 10px rgba(255, 179, 68, 0.5),
-    0 0 18px rgba(255, 179, 68, 0.3) !important;
-  filter: drop-shadow(0 0 6px rgba(255, 179, 68, 0.4)) !important;
+  color: rgba(255, 179, 68, 0.95) !important;
+  -webkit-text-stroke: 0 !important;
+  text-shadow: 0 8px 25px rgba(255, 179, 68, 0.28) !important;
 }
 
-/* Submenü mit subtilerem Glow */
 .nav-submenu li a {
   color: transparent !important;
-  text-shadow: 
-    0 0 6px rgba(255, 179, 68, 0.3),
-    0 0 12px rgba(255, 179, 68, 0.15) !important;
-  transition: all 0.3s ease !important;
+  -webkit-text-stroke: 1px rgba(255, 179, 68, 0.35) !important;
+  letter-spacing: 0.2em !important;
+  text-shadow: none !important;
 }
 
 .nav-submenu li a:hover {
-  color: rgba(255, 179, 68, 0.2) !important;
-  text-shadow: 
-    0 0 10px rgba(255, 179, 68, 0.4),
-    0 0 18px rgba(255, 179, 68, 0.25) !important;
+  color: rgba(255, 179, 68, 0.95) !important;
+  -webkit-text-stroke: 1px #ffb344 !important;
 }
 
 /* Vertikale Texte links mit subtilerem Glow */
